@@ -1,0 +1,20 @@
+{
+  "name":"back-end",
+  "version":"1.0.0",
+  "engines":{
+    "node":"16.13.1"
+  },
+    "description":"App to assist with financial planning/budgeting",
+    "main":"server.js",
+  "scripts":{
+    "start":"node server.js",
+    "db:seed":"psql -U postgres -f db/seed.sql",
+    "db:init":"psql -U postgres -f db/schemal.sql"
+  },
+  "dependencies":{
+    "cors":"^2.8.5",
+    "dotenv":"^10.0.0",
+    "express":"^4.17.2",
+    "pg-promise":"^10.11.1"
+  }
+}
