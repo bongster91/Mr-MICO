@@ -6,7 +6,11 @@ const {
     newUser,
     deleteUser,
     updateUser
-} = require('../queries/usersQuery');
+} = require('../queries/userQuery');
+const {
+    customErrorHandler
+} = require('../helper/errorHelperFunctions');
+const { validateUser } = require('../helper/userValidation');
 
 users.get('/', async (req, res) => {
     const { success, payload } = await getAllUsers();
@@ -50,12 +54,12 @@ users.get('/:id', async (req, res) => {
     };
 });
 
-users.post('/', async (req, res) => {
+users.post('/', validateUser, async (req, res) => {
     try {
         const { success, payload } = await newUser(req.body);
 
         if (payload.user_id) {
-            res.json({
+            res.status(201).json({
                 success,
                 payload
             });
@@ -76,14 +80,14 @@ users.post('/', async (req, res) => {
     };
 });
 
-users.put('/:id', async (req, res) => {
+users.put('/:id', validateUser, async (req, res) => {
     const { id } = req.params;
 
     try {
         const { success, payload } = await updateUser(id, req.body);
 
         if (payload.user_id) {
-            res.status(200).json({
+            res.status(201).json({
                 success,
                 payload
             });
@@ -131,5 +135,7 @@ users.delete('/:id', async (req, res) => {
         });
     };
 });
+
+//users.use(customErrorHandler);
 
 module.exports = users;
