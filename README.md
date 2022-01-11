@@ -1,5 +1,6 @@
-# Mr-MICO
-------------------------------------------------------------------
+# Mr-MICO 
+---------------------------------------
+*current work in progress*
 ### Mister Meowgi's Interesting Capital Operations
 
 <br>

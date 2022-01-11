@@ -8,7 +8,7 @@ CREATE TABLE users (
     first_name VARCHAR(50),
     last_name VARCHAR(50),
     password VARCHAR(50),
-    phone_number VARCHAR(12),
+    phone_number INTEGER,
     address VARCHAR(100),
     email VARCHAR(100) UNIQUE,
     admin BOOLEAN DEFAULT false
