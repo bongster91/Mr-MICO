@@ -5,6 +5,9 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
+const userController = require('./controllers/userController');
+app.use('/users', userController);
+
 app.get('/', (req, res) => {
     res.send('Financial Info');
 });
