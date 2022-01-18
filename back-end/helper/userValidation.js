@@ -25,9 +25,9 @@ const validateUser = (req, res, next) => {
             isUserValid = false;
             errorMsg += `Password must be of type 'string'`;
         };
-        if (typeof phone_number !== 'number') {
+        if (typeof phone_number !== 'string') {
             isUserValid = false;
-            errorMsg += `Phone number must be of type 'number'`;
+            errorMsg += `Phone number must be of type 'string'`;
         };
         if (typeof address !== 'string') {
             isUserValid = false;
