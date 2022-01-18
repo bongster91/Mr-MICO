@@ -8,13 +8,10 @@ CREATE TABLE users (
     first_name VARCHAR(50),
     last_name VARCHAR(50),
     password VARCHAR(50),
-    phone_number INTEGER,
+    phone_number TEXT,
     address VARCHAR(100),
     email VARCHAR(100) UNIQUE,
     admin BOOLEAN DEFAULT false
-    -- bank_id BIGINT REFERENCES bank_accounts(id),
-    -- property_id BIGINT REFERENCES properties(id),
-    -- investment_id BIGINT REFERENCES investments(id)
 );
 
 DROP TABLE IF EXISTS bank_accounts;
@@ -41,5 +38,45 @@ CREATE TABLE investments (
     name VARCHAR(50),
     type TEXT,
     amount BIGINT,
+    user_id INTEGER REFERENCES users(user_id) ON DELETE CASCADE
+);
+
+DROP TABLE IF EXISTS bills;
+CREATE TABLE bills (
+    id BIGSERIAL PRIMARY KEY,
+    name VARCHAR(50),
+    note TEXT,
+    amount BIGINT,
+    type TEXT,
+    user_id INTEGER REFERENCES users(user_id) ON DELETE CASCADE
+);
+
+DROP TABLE IF EXISTS loans;
+CREATE TABLE loans (
+    id BIGSERIAL PRIMARY KEY,
+    name VARCHAR(50),
+    note TEXT,
+    amount BIGINT,
+    type TEXT,
+    user_id INTEGER REFERENCES users(user_id) ON DELETE CASCADE
+);
+
+DROP TABLE IF EXISTS credit;
+CREATE TABLE credit (
+    id BIGSERIAL PRIMARY KEY,
+    name VARCHAR(50),
+    note TEXT,
+    amount BIGINT,
+    type TEXT,
+    user_id INTEGER REFERENCES users(user_id) ON DELETE CASCADE
+);
+
+DROP TABLE IF EXISTS personal_expenses;
+CREATE TABLE personal_expenses (
+    id BIGSERIAL PRIMARY KEY,
+    name VARCHAR(50),
+    note TEXT,
+    amount BIGINT,
+    type TEXT,
     user_id INTEGER REFERENCES users(user_id) ON DELETE CASCADE
 );
