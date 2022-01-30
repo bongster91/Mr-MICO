@@ -77,6 +77,5 @@ CREATE TABLE personal_expenses (
     name VARCHAR(50),
     note TEXT,
     amount BIGINT,
-    type TEXT,
     user_id INTEGER REFERENCES users(user_id) ON DELETE CASCADE
 );
