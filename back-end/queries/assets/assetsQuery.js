@@ -1,4 +1,4 @@
-const db = require('../db/dbConfig');
+const db = require('../../db/dbConfig');
 
 const getAllAssets = async (user_id) => {
     try {
@@ -26,26 +26,6 @@ const getAllAssets = async (user_id) => {
     };
 };
 
-const getOneAsset = async (user_id, type) => {
-
-};
-
-const newAsset = async (user_id, asset) => {
-
-};
-
-const updateAsset = async (user_id, id, asset) => {
-
-};
-
-const deleteAsset = async (user_id, id) => {
-
-};
-
 module.exports = {
-    getAllAssets,
-    getOneAsset,
-    newAsset,
-    updateAsset,
-    deleteAsset
+    getAllAssets
 };
