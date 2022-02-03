@@ -36,11 +36,11 @@ const newUser = async (user) => {
     try {
         const newUser = await db.one(
             `
-            INSERT INTO users 
-            (first_name, last_name, password, phone_number, address, email) 
-            VALUES
-            ($1, $2, $3, $4, $5, $6) 
-            RETURNING *
+                INSERT INTO users 
+                (first_name, last_name, password, phone_number, address, email) 
+                VALUES
+                ($1, $2, $3, $4, $5, $6) 
+                RETURNING *
             `,
             [
                 user.first_name, 
@@ -85,16 +85,17 @@ const deleteUser = async (id) => {
 const updateUser = async (id, user) => {
     try {
         const updatedUser = await db.one(
-            `UPDATE users 
-            SET 
-                first_name=$1, 
-                last_name=$2, 
-                password=$3, 
-                phone_number=$4, 
-                address=$5, 
-                email=$6 
-            WHERE user_id=$7 
-            RETURNING *
+            `
+                UPDATE users 
+                SET 
+                    first_name=$1, 
+                    last_name=$2, 
+                    password=$3, 
+                    phone_number=$4, 
+                    address=$5, 
+                    email=$6 
+                WHERE user_id=$7 
+                RETURNING *
             `,
             [
                 user.first_name, 

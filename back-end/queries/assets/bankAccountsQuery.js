@@ -41,7 +41,29 @@ const getOneBankAccount = async (user_id, id) => {
 };
 
 const newBankAccount = async (user_id, bankAccount) => {
+    try {
+        const newBankAccount = await db.one(
+            `
+                INSERT INTO bank_accounts
+                (bank, type, amount, user_id)
+                VALUES
+                ($1, $2, $3, $4)
+                RETURNING *
+            `,
+            [ bankAccount.bank, bankAccount.type, bankAccount.amount, user_id ]
+        );
 
+        return {
+            success: true,
+            payload: newBankAccount
+        };
+
+    } catch (error) {
+        return {
+            success: false,
+            payload: error
+        };
+    };
 };
 
 const deleteBankAccount = async (user_id, id) => {
