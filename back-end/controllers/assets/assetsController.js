@@ -1,12 +1,13 @@
 const express = require('express');
 const assets = express.Router({ mergeParams: true });
+
+const bankAccountsController = require('./bankAccountsController');
+const investmentsController = require('./investmentsController');
+const propertiesController = require('./propertiesController');
+
 const {
-    getAllAssets,
-    getOneAsset,
-    newAsset,
-    updateAsset,
-    deleteAsset
-} = require('../queries/assetsQuery');
+    getAllAssets
+} = require('../../queries/assets/assetsQuery');
 
 assets.get('/', async (req, res) => {
     const { user_id } = req.params;
@@ -24,5 +25,8 @@ assets.get('/', async (req, res) => {
     };
 });
 
+assets.use('/bank_accounts', bankAccountsController);
+assets.use('/investments', investmentsController);
+assets.use('/properties', propertiesController);
 
 module.exports = assets;

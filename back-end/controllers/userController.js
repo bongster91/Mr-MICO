@@ -1,6 +1,7 @@
 const express = require('express');
 const users = express.Router({ mergeParams: true });
-const assetsController = require('./assetsController');
+const assetsController = require('./assets/assetsController');
+
 const {
     getAllUsers,
     getOneUser,
@@ -8,6 +9,7 @@ const {
     deleteUser,
     updateUser
 } = require('../queries/userQuery');
+
 const {
     customErrorHandler
 } = require('../helper/errorHelperFunctions');
@@ -137,6 +139,6 @@ users.delete('/:id', async (req, res) => {
     };
 });
 
-users.use('/:userId/assets', assetsController);
+users.use('/:user_id/assets', assetsController);
 
 module.exports = users;
