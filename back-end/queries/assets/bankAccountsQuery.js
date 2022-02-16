@@ -70,9 +70,9 @@ const deleteBankAccount = async (user_id, id) => {
     try {
         const deletedBankAccount = await db.one(
             `
-            DELETE FROM bank_accounts
-            WHERE user_id=$1 AND id=$2
-            RETURNING *
+                DELETE FROM bank_accounts
+                WHERE user_id=$1 AND id=$2
+                RETURNING *
             `,
             [ user_id, id ]
         );
@@ -94,10 +94,10 @@ const updateBankAccount = async (user_id, id, bankAccount) => {
     try {
         const updatedBankAccount = await db.one(
             `
-            UPDATE bank_accounts
-            SET bank=$1, type=$2, amount=$3
-            WHERE user_id=$4 AND id=$5
-            RETURNING *
+                UPDATE bank_accounts
+                SET bank=$1, type=$2, amount=$3
+                WHERE user_id=$4 AND id=$5
+                RETURNING *
             `,
             [ bankAccount.bank, bankAccount.type, bankAccount.amount, user_id, id ]
         );
