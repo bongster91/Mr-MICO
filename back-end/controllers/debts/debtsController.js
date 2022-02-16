@@ -2,6 +2,7 @@ const express = require('express');
 const debts = express.Router({ mergeParams: true });
 
 const billsController = require('./billsController');
+const loansController = require('./loansController');
 
 const {
     getAllDebts
@@ -36,5 +37,6 @@ debts.get('/', async (req, res) => {
 });
 
 debts.use('/bills', billsController);
+debts.use('/loans', loansController);
 
 module.exports = debts;
