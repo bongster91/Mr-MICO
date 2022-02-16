@@ -11,16 +11,26 @@ const {
 
 bank_accounts.get('/', async (req, res) => {
     const { user_id } = req.params;
-    const { success, payload } = await getAllBankAccounts(user_id);
 
-    if (success) {
-        res.status(200).json({ payload });
-
-    } else {
-        console.error(payload);
+    try {
+        const { success, payload } = await getAllBankAccounts(user_id);
+        
+        if (success) {
+            res.status(200).json({
+                 payload 
+            });
+            
+        } else {
+            console.error(payload);
+            return {
+                success,
+                payload: `Failed to find bank accounts for user_id: ${user_id}`
+            };
+        };
+    } catch (error) {
         res.status(404).json({
-            success,
-            payload: `Resource not found for user_id: ${user_id}`
+            error: `Resources not found`,
+            message: error
         });
     };
 });
@@ -64,12 +74,13 @@ bank_accounts.post('/', async (req, res) => {
                 success,
                 payload
             });
+
         } else {
             console.error(payload);
-            res.status(404).json({
+            return {
                 success,
-                payload: `Failed to create new bank account for user_id: ${user_id}`
-            });
+                payload: `Failed to create new bank account for user_id: ${user_id} with details: ${req.body}`
+            };
         };
 
     } catch (error) {
@@ -94,15 +105,15 @@ bank_accounts.put('/:id', async (req, res) => {
 
         } else {
             console.error(payload);
-            res.status(404).json({
+            return {
                 success,
                 payload: `Failed to update bank account with id: ${id} for user_id: ${user_id}`
-            });
+            };
         };
 
     } catch (error) {
         res.status(404).json({
-            error: 'Resource not created',
+            error: 'Resource not updated',
             message: error
         });
     };
@@ -122,10 +133,10 @@ bank_accounts.delete('/:id', async (req, res) => {
 
         } else {
             console.error(payload);
-            res.status(404).json({
+            return {
                 success,
                 payload: `Failed to delete bank account with id: ${id} for user_id: ${user_id}`
-            });
+            };
         };
 
     } catch (error) {
