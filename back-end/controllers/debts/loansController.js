@@ -4,6 +4,7 @@ const {
     getAllLoans,
     getOneLoan,
     newLoan,
+    deleteLoan,
 } = require('../../queries/debts/loansQuery');
 
 loans.get('/', async (req, res) => {
@@ -84,6 +85,34 @@ loans.post('/', async (req, res) => {
     } catch (error) {
         res.status(404).json({
             error: 'Resource not created',
+            message: error
+        });
+    };
+});
+
+loans.delete('/:id', async (req, res) => {
+    const { user_id, id } = req.params;
+
+    try {
+        const { success, payload } = await deleteLoan(user_id, id);
+
+        if (success) {
+            res.status(200).json({
+                success,
+                payload
+            });
+
+        } else {
+            console.error(payload);
+            return {
+                success,
+                payload: `Failed to delete loan with id: ${id} for user_id: ${user_id}`
+            };
+        };
+
+    } catch (error) {
+        res.status(404).json({
+            error: 'Resource not deleted',
             message: error
         });
     };

@@ -70,8 +70,34 @@ const newLoan = async (user_id, loan) => {
     };
 };
 
+const deleteLoan = async (user_id, id) => {
+    try {
+        const deletedLoan = await db.one(
+            `
+                DELETE FROM loans
+                WHERE
+                user_id=$1 AND id=$2
+                RETURNING *
+            `,
+            [ user_id, id ]
+        );
+
+        return {
+            success: true,
+            payload: deletedLoan
+        };
+
+    } catch (error) {
+        return {
+            success: false,
+            payload: error
+        };
+    };
+};
+
 module.exports = {
     getAllLoans,
     getOneLoan,
     newLoan,
+    deleteLoan,
 }; 
