@@ -1,6 +1,8 @@
 const express = require('express');
 const debts = express.Router({ mergeParams: true });
 
+const billsController = require('./billsController');
+
 const {
     getAllDebts
 } = require('../../queries/debts/debtsQuery');
@@ -32,5 +34,7 @@ debts.get('/', async (req, res) => {
         });
     };
 });
+
+debts.use('/bills', billsController);
 
 module.exports = debts;
