@@ -38,36 +38,36 @@ INSERT INTO investments (
 ;
 
 INSERT INTO bills (
-    user_id, name, note, type, amount
+    user_id, name, type, amount
 ) VALUES
-    (1, '12-Cat Collect', 'regular litter cleaner', 'Household', 500),
-    (1, 'Cats-R-Us', 'kitten daycare', 'Household', 700), 
-    (1, 'Feline Finder', 'dating site', 'Other', 100), 
-    (1, 'Netflix', 'gotta watch bird videos', 'Subscription', 100),
-    (1, 'Kitty Koffee Kollective', 'monthly coffee subscription', 'Subscription', 100)
+    (1, '12-Cat Collect', 'Household', 500),
+    (1, 'Cats-R-Us', 'Household', 700), 
+    (1, 'Feline Finder', 'Other', 100), 
+    (1, 'Netflix', 'Subscription', 100),
+    (1, 'Kitty Koffee Kollective', 'Subscription', 100)
 ;
 
 INSERT INTO loans (
-    user_id, name, note, type, amount
+    user_id, name, type, amount
 ) VALUES
-    (1, 'American Cat Promotion', 'govt assistance for cats', 'Personal', 5000),
-    (1, 'Catmobile', 'car', 'Auto', 10000), 
-    (1, 'EduCated', 'kitty university', 'Student', 8000), 
-    (1, '5 Tier Cat Tower Complex', '2nd home', 'Mortgage', 7000),
-    (1, 'Small Business Fund', 'government assistance for small businesses', 'Business', 20000)
+    (1, 'American Cat Promotion', 'Personal', 5000),
+    (1, 'Catmobile', 'Auto', 10000), 
+    (1, 'EduCated', 'Student', 8000), 
+    (1, '5 Tier Cat Tower Complex', 'Mortgage', 7000),
+    (1, 'Small Business Fund', 'Business', 20000)
 ;
 
 INSERT INTO credit (
-    user_id, name, note, type, amount
+    user_id, name, type, amount
 ) VALUES
-    (1, 'Premium', '', 'American Express', 20000),
-    (1, 'Value', '', 'Discover', 3000), 
-    (1, 'One Preferred', '', 'Visa', 5000), 
-    (1, 'Select', '', 'Mastercard', 17000)
+    (1, 'Premium', 'American Express', 20000),
+    (1, 'Value', 'Discover', 3000), 
+    (1, 'One Preferred', 'Visa', 5000), 
+    (1, 'Select', 'Mastercard', 17000)
 ;
 
 INSERT INTO personal_expenses (
-    user_id, name, note, amount
+    user_id, name, type, amount
 ) VALUES
     (1, 'Relaxing Sauna', 'spa day', 500),
     (1, 'Starbucks', 'vanilla latte', 10), 

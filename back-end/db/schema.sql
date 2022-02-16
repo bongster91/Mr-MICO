@@ -45,9 +45,8 @@ DROP TABLE IF EXISTS bills;
 CREATE TABLE bills (
     id BIGSERIAL PRIMARY KEY,
     name VARCHAR(50),
-    note TEXT,
-    amount BIGINT,
     type TEXT,
+    amount BIGINT,
     user_id INTEGER REFERENCES users(user_id) ON DELETE CASCADE
 );
 
@@ -55,9 +54,8 @@ DROP TABLE IF EXISTS loans;
 CREATE TABLE loans (
     id BIGSERIAL PRIMARY KEY,
     name VARCHAR(50),
-    note TEXT,
-    amount BIGINT,
     type TEXT,
+    amount BIGINT,
     user_id INTEGER REFERENCES users(user_id) ON DELETE CASCADE
 );
 
@@ -65,9 +63,8 @@ DROP TABLE IF EXISTS credit;
 CREATE TABLE credit (
     id BIGSERIAL PRIMARY KEY,
     name VARCHAR(50),
-    note TEXT,
-    amount BIGINT,
     type TEXT,
+    amount BIGINT,
     user_id INTEGER REFERENCES users(user_id) ON DELETE CASCADE
 );
 
@@ -75,7 +72,7 @@ DROP TABLE IF EXISTS personal_expenses;
 CREATE TABLE personal_expenses (
     id BIGSERIAL PRIMARY KEY,
     name VARCHAR(50),
-    note TEXT,
+    type TEXT,
     amount BIGINT,
     user_id INTEGER REFERENCES users(user_id) ON DELETE CASCADE
 );
