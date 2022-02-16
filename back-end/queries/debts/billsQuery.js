@@ -71,7 +71,8 @@ const deleteBill = async (user_id, id) => {
         const deletedBill = await db.one(
             `
                 DELETE FROM bills
-                WHERE user_id=$1 AND id=$2
+                WHERE 
+                user_id=$1 AND id=$2
                 RETURNING *
             `,
             [ user_id, id ]
@@ -90,9 +91,37 @@ const deleteBill = async (user_id, id) => {
     };
 };
 
+const updateBill = async (user_id, id, bill) => {
+    try {
+        const updatedBill = await db.one(
+            `
+                UPDATE bills
+                SET
+                name=$1, type=$2, amount=$3
+                WHERE 
+                user_id=$4 AND id=$5
+                RETURNING *
+            `,
+            [ bill.name, bill.type, bill.amount, user_id, id ]
+        );
+
+        return {
+            success: true,
+            payload: updatedBill
+        };
+
+    } catch (error) {
+        return {
+            success: false,
+            payload: error
+        };
+    };
+};
+
 module.exports = {
     getAllBills,
     getOneBill,
     newBill,
     deleteBill,
+    updateBill
 };

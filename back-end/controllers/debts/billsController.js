@@ -5,6 +5,7 @@ const {
     getOneBill,
     newBill,
     deleteBill,
+    updateBill
 } = require('../../queries/debts/billsQuery');
 
 bills.get('/', async (req, res) => {
@@ -114,6 +115,34 @@ bills.delete('/:id', async (req, res) => {
     } catch (error) {
         res.status(404).json({
             error: 'Resource not deleted',
+            message: error
+        });
+    };
+});
+
+bills.put('/:id', async (req, res) => {
+    const { user_id, id } = req.params;
+
+    try {
+        const { success, payload } = await updateBill(user_id, id, req.body);
+
+        if (success && payload.id) {
+            res.status(201).json({
+                success,
+                payload
+            });
+
+        } else {
+            console.error(payload);
+            return {
+                success,
+                payload: `Failed to update bill with id: ${id} for user_id: ${user_id} with details: ${req.body}`
+            };
+        };
+
+    } catch (error) {
+        res.status(404).json({
+            error: 'Resource not updated',
             message: error
         });
     };
