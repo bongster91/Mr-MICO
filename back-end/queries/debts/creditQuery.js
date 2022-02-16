@@ -44,7 +44,34 @@ const getOneCredit = async (user_id, id) => {
     };
 };
 
+const newCredit = async (user_id, credit) => {
+    try {
+        const newCredit = await db.one(
+            `
+                INSERT INTO credit
+                (name, type, amount, user_id)
+                VALUES
+                ($1, $2, $3, $4)
+                RETURNING *
+            `,
+            [ credit.name, credit.type, credit.amount, user_id ]
+        );
+
+        return {
+            success: true,
+            payload: newCredit
+        };
+
+    } catch (error) {
+        return {
+            success: false,
+            payload: error
+        };
+    };
+};
+
 module.exports = {
     getAllCredit,
     getOneCredit,
+    newCredit,
 };
