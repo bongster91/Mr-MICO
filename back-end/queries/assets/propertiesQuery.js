@@ -40,8 +40,60 @@ const getOneProperty = async (user_id, id) => {
     };
 };
 
+const newProperty = async (user_id, property) => {
+    try {
+        const newProperty = await db.one(
+            `
+                INSERT INTO properties
+                (name, type, value, user_id)
+                VALUES
+                ($1, $2, $3, $4)
+                RETURNING *
+            `,
+            [ property.name, property.type, property.value, user_id ]
+        );
+
+        return {
+            success: true,
+            payload: newProperty
+        };
+
+    } catch (error) {
+        return {
+            success: false,
+            payload: error
+        };
+    };
+};
+
+const deleteProperty = async (user_id, id) => {
+    try {
+        const deletedProperty = await db.one(
+            `
+                DELETE FROM properties
+                WHERE user_id=$1 AND id=$2
+                RETURNING *
+            `,
+            [ user_id, id ]
+        );
+
+        return {
+            success: true,
+            payload: deletedProperty
+        };
+
+    } catch (error) {
+        return {
+            success: false,
+            payload: error
+        };
+    };
+};
+
 
 module.exports = {
     getAllProperties,
     getOneProperty,
+    newProperty,
+    deleteProperty,
 };

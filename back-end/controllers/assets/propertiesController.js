@@ -3,6 +3,8 @@ const properties = express.Router({ mergeParams: true });
 const {
     getAllProperties,
     getOneProperty,
+    newProperty,
+    deleteProperty,
 } = require('../../queries/assets/propertiesQuery');
 
 properties.get('/', async (req, res) => {
@@ -56,6 +58,62 @@ properties.get('/:id', async (req, res) => {
     } catch (error) {
         res.status(404).json({
             error: 'Resource not found',
+            message: error
+        });
+    };
+});
+
+properties.post('/', async (req, res) => {
+    const { user_id } = req.params;
+
+    try {
+        const { success, payload } = await newProperty(user_id, req.body);
+
+        if (success && payload.id) {
+            res.status(201).json({
+                success,
+                payload
+            });
+
+        } else {
+            console.error(payload);
+            return {
+                success,
+                payload: `Failed to create new property for user_id: ${user_id} with details: ${req.body}`
+            };
+        };
+
+    } catch (error) {
+        res.status(404).json({
+            error: 'Resource not created',
+            message: error
+        });
+    };
+});
+
+properties.delete('/:id', async (req, res) => {
+    const { user_id, id } = req.params;
+
+    try {
+        const { success, payload } = await deleteProperty(user_id, id);
+
+        if (success) {
+            res.status(200).json({
+                success,
+                payload
+            });
+
+        } else {
+            console.error(payload);
+            return {
+                success,
+                payload: `Failed to delete property with id: ${id} for user_id: ${user_id}`
+            };
+        };
+
+    } catch (error) {
+        res.status(404).json({
+            error: 'Resouce not deleted',
             message: error
         });
     };

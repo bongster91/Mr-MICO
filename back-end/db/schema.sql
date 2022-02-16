@@ -28,7 +28,7 @@ CREATE TABLE properties (
     id BIGSERIAL PRIMARY KEY,
     name VARCHAR(50),
     type TEXT,
-    worth BIGINT,
+    value BIGINT,
     user_id INTEGER REFERENCES users(user_id) ON DELETE CASCADE
 );
 

@@ -97,7 +97,7 @@ investments.delete('/:id', async (req, res) => {
     const { user_id, id } = req.params;
 
     try {
-        const { success, payload } = deleteInvestment(user_id, id);
+        const { success, payload } = await deleteInvestment(user_id, id);
 
         if (success) {
             res.status(200).json({
@@ -125,7 +125,7 @@ investments.put('/:id', async (req, res) => {
     const { user_id, id } = req.params;
 
     try {
-        const { success, payload } = updateInvestment(user_id, id, req.body);
+        const { success, payload } = await updateInvestment(user_id, id, req.body);
 
         if (success && payload.id) {
             res.status(201).json({
