@@ -40,7 +40,34 @@ const getOneBill = async (user_id, id) => {
     };
 };
 
+const newBill = async (user_id, bill) => {
+    try {
+        const newBill = await db.one(
+            `
+                INSERT INTO bills
+                (name, type, amount, user_id)
+                VALUES
+                ($1, $2, $3, $4)
+                RETURNING *
+            `,
+            [ bill.name, bill.type, bill.amount, user_id ]
+        );
+
+        return {
+            success: true,
+            payload: newBill
+        };
+
+    } catch (error) {
+        return {
+            success: false,
+            payload: error
+        };
+    };
+};
+
 module.exports = {
     getAllBills,
     getOneBill,
+    newBill,
 };

@@ -3,6 +3,7 @@ const bills = express.Router({ mergeParams: true });
 const {
     getAllBills,
     getOneBill,
+    newBill,
 } = require('../../queries/debts/billsQuery');
 
 bills.get('/', async (req, res) => {
@@ -56,6 +57,34 @@ bills.get('/:id', async (req, res) => {
     } catch (error) {
         res.status(404).json({
             error: 'Resource not found',
+            message: error
+        });
+    };
+});
+
+bills.post('/', async (req, res) => {
+    const { user_id } = req.params;
+
+    try {
+        const { success, payload } = await newBill(user_id, req.body);
+
+        if (success && payload.id) {
+            res.status(201).json({
+                success,
+                payload
+            });
+
+        } else {
+            console.error(payload);
+            return {
+                success,
+                payload: `Failed to create bill for user_id: ${user_id} with details: ${req.body}`
+            };
+        };
+
+    } catch (error) {
+        res.status(404).json({
+            error: 'Resource not created',
             message: error
         });
     };
