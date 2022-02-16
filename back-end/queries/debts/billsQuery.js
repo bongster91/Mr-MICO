@@ -20,6 +20,27 @@ const getAllBills = async (user_id) => {
     };
 };
 
+const getOneBill = async (user_id, id) => {
+    try {
+        const oneBill = await db.one(
+            `SELECT * FROM bills WHERE user_id=$1 AND id=$2`,
+            [ user_id, id ]
+        );
+
+        return {
+            success: true,
+            payload: oneBill
+        };
+
+    } catch (error) {
+        return {
+            success: false,
+            payload: error
+        };
+    };
+};
+
 module.exports = {
     getAllBills,
+    getOneBill,
 };

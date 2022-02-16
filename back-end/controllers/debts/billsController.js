@@ -2,6 +2,7 @@ const express = require('express');
 const bills = express.Router({ mergeParams: true });
 const {
     getAllBills,
+    getOneBill,
 } = require('../../queries/debts/billsQuery');
 
 bills.get('/', async (req, res) => {
@@ -32,5 +33,32 @@ bills.get('/', async (req, res) => {
     };
 });
 
+bills.get('/:id', async (req, res) => {
+    const { user_id, id } = req.params;
+
+    try {
+        const { success, payload } = await getOneBill(user_id, id);
+
+        if (success && payload.id) {
+            res.status(200).json({
+                success,
+                payload
+            });
+
+        } else {
+            console.error(payload);
+            return {
+                success,
+                payload: `Failed to get bill with id: ${id} for user_id: ${user_id}`
+            };
+        };
+
+    } catch (error) {
+        res.status(404).json({
+            error: 'Resource not found',
+            message: error
+        });
+    };
+});
 
 module.exports = bills;
