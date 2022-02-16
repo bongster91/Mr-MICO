@@ -5,7 +5,8 @@ const {
     getAllBankAccounts,
     getOneBankAccount,
     newBankAccount,
-    updateBankAccount
+    updateBankAccount,
+    deleteBankAccount
 } = require('../../queries/assets/bankAccountsQuery');
 
 bank_accounts.get('/', async (req, res) => {
@@ -19,7 +20,7 @@ bank_accounts.get('/', async (req, res) => {
         console.error(payload);
         res.status(404).json({
             success,
-            payload: 'Resources not found'
+            payload: `Resource not found for user_id: ${user_id}`
         });
     };
 });
@@ -67,7 +68,7 @@ bank_accounts.post('/', async (req, res) => {
             console.error(payload);
             res.status(404).json({
                 success,
-                payload: 'Failed to create new bank account'
+                payload: `Failed to create new bank account for user_id: ${user_id}`
             });
         };
 
@@ -95,13 +96,41 @@ bank_accounts.put('/:id', async (req, res) => {
             console.error(payload);
             res.status(404).json({
                 success,
-                payload: 'Failed to update user'
+                payload: `Failed to update bank account with id: ${id} for user_id: ${user_id}`
             });
         };
 
     } catch (error) {
         res.status(404).json({
             error: 'Resource not created',
+            message: error
+        });
+    };
+});
+
+bank_accounts.delete('/:id', async (req, res) => {
+    const { user_id, id } = req.params;
+
+    try {
+        const { success, payload } = await deleteBankAccount(user_id, id);
+
+        if (success) {
+            res.status(200).json({
+                success,
+                payload
+            });
+
+        } else {
+            console.error(payload);
+            res.status(404).json({
+                success,
+                payload: `Failed to delete bank account with id: ${id} for user_id: ${user_id}`
+            });
+        };
+
+    } catch (error) {
+        res.status(404).json({
+            error: 'Resource not deleted',
             message: error
         });
     };

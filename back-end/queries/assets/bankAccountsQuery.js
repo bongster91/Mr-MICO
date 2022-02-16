@@ -67,7 +67,27 @@ const newBankAccount = async (user_id, bankAccount) => {
 };
 
 const deleteBankAccount = async (user_id, id) => {
+    try {
+        const deletedBankAccount = await db.one(
+            `
+            DELETE FROM bank_accounts
+            WHERE user_id=$1 AND id=$2
+            RETURNING *
+            `,
+            [ user_id, id ]
+        );
 
+        return {
+            success: true,
+            payload: deletedBankAccount
+        };
+
+    } catch (error) {
+        return {
+            success: false,
+            payload: error
+        };
+    };
 };
 
 const updateBankAccount = async (user_id, id, bankAccount) => {
