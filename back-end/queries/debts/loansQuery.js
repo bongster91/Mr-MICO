@@ -95,9 +95,37 @@ const deleteLoan = async (user_id, id) => {
     };
 };
 
+const updateLoan = async (user_id, id, loan) => {
+    try {
+        const updatedLoan = await db.one(
+            `
+                UPDATE loans
+                SET
+                name=$1, type=$2, amount=$3
+                WHERE
+                user_id=$4 AND id=$5
+                RETURNING *
+            `,
+            [ loan.name, loan.type, loan.amount, user_id, id ]
+        );
+
+        return {
+            success: true,
+            payload: updatedLoan
+        };
+
+    } catch (error) {
+        return {
+            success: false,
+            payload: error
+        };
+    };
+};
+
 module.exports = {
     getAllLoans,
     getOneLoan,
     newLoan,
     deleteLoan,
+    updateLoan
 }; 

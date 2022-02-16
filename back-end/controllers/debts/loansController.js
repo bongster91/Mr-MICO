@@ -5,6 +5,7 @@ const {
     getOneLoan,
     newLoan,
     deleteLoan,
+    updateLoan
 } = require('../../queries/debts/loansQuery');
 
 loans.get('/', async (req, res) => {
@@ -113,6 +114,34 @@ loans.delete('/:id', async (req, res) => {
     } catch (error) {
         res.status(404).json({
             error: 'Resource not deleted',
+            message: error
+        });
+    };
+});
+
+loans.put('/:id', async (req, res) => {
+    const { user_id, id } = req.params;
+
+    try {
+        const { success, payload } = await updateLoan(user_id, id, req.body);
+
+        if (success && payload.id) {
+            res.status(200).json({
+                success,
+                payload
+            });
+
+        } else {
+            console.error(payload);
+            return {
+                success,
+                payload: `Failed to update loan with id: ${id} for user_id: ${user_id} with details: ${req.body}`
+            };
+        };
+
+    } catch (error) {
+        res.status(404).json({
+            error: 'Resource not updated',
             message: error
         });
     };
