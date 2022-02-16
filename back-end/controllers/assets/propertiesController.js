@@ -5,6 +5,7 @@ const {
     getOneProperty,
     newProperty,
     deleteProperty,
+    updateProperty
 } = require('../../queries/assets/propertiesQuery');
 
 properties.get('/', async (req, res) => {
@@ -114,6 +115,34 @@ properties.delete('/:id', async (req, res) => {
     } catch (error) {
         res.status(404).json({
             error: 'Resouce not deleted',
+            message: error
+        });
+    };
+});
+
+properties.put('/:id', async (req, res) => {
+    const { user_id, id } = req.params;
+
+    try {
+        const { success, payload } = await updateProperty(user_id, id, req.body);
+
+        if (success && payload.id) {
+            res.status(200).json({
+                success,
+                payload
+            });
+
+        } else {
+            console.error(payload);
+            return {
+                success,
+                payload: `Failed to update property with id: ${id} for user_id: ${user_id}`
+            };
+        };
+
+    } catch (error) {
+        res.status(404).json({
+            error: 'Resource not updated',
             message: error
         });
     };

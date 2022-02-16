@@ -90,10 +90,35 @@ const deleteProperty = async (user_id, id) => {
     };
 };
 
+const updateProperty = async (user_id, id, investment) => {
+    try {
+        const updatedProperty = await db.one(
+            `
+                UPDATE properties
+                SET name=$2, type=$2, value=$3
+                WHERE user_id=$4 AND id=$5
+                RETURNING *
+            `,
+            [ investment.name, investment.type, investment.value, user_id, id ]
+        );
+
+        return {
+            success: true,
+            payload: updatedProperty
+        };
+
+    } catch (error) {
+        return {
+            success: false,
+            payload: error
+        };
+    };
+};
 
 module.exports = {
     getAllProperties,
     getOneProperty,
     newProperty,
     deleteProperty,
+    updateProperty
 };
