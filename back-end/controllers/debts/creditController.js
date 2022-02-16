@@ -4,6 +4,7 @@ const {
     getAllCredit,
     getOneCredit,
     newCredit,
+    deleteCredit,
 } = require('../../queries/debts/creditQuery');
 
 credit.get('/', async (req, res) => {
@@ -85,6 +86,34 @@ credit.post('/', async (req, res) => {
     } catch (error) {
         res.status(400).json({
             error: 'Resource not created',
+            message: error
+        });
+    };
+});
+
+credit.delete('/:id', async (req, res) => {
+    const { user_id, id } = req.params;
+
+    try {
+        const { success, payload } = await deleteCredit(user_id, id);
+
+        if (success) {
+            res.status(200).json({
+                success,
+                payload
+            });
+
+        } else {
+            console.error(payload);
+            return {
+                success,
+                payload: `Failed to deleted credit with id: ${id} for user_id: ${user_id}`
+            };
+        };
+
+    } catch (error) {
+        res.status(400).json({
+            error: 'Resource not deleted',
             message: error
         });
     };

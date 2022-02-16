@@ -70,8 +70,34 @@ const newCredit = async (user_id, credit) => {
     };
 };
 
+const deleteCredit = async (user_id, id) => {
+    try {
+        const deletedCredit = await db.one(
+            `
+                DELETE FROM credit
+                WHERE
+                user_id=$1 AND id=$2
+                RETURNING *
+            `,
+            [ user_id, id ]
+        );
+
+        return {
+            success: true,
+            payload: deletedCredit
+        };
+
+    } catch (error) {
+        return {
+            success: false,
+            payload: error
+        };
+    };
+};
+
 module.exports = {
     getAllCredit,
     getOneCredit,
     newCredit,
+    deleteCredit,
 };
