@@ -66,8 +66,33 @@ const newBill = async (user_id, bill) => {
     };
 };
 
+const deleteBill = async (user_id, id) => {
+    try {
+        const deletedBill = await db.one(
+            `
+                DELETE FROM bills
+                WHERE user_id=$1 AND id=$2
+                RETURNING *
+            `,
+            [ user_id, id ]
+        );
+
+        return {
+            success: true,
+            payload: deletedBill
+        };
+
+    } catch (error) {
+        return {
+            success: false,
+            payload: error
+        };
+    };
+};
+
 module.exports = {
     getAllBills,
     getOneBill,
     newBill,
+    deleteBill,
 };

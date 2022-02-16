@@ -4,6 +4,7 @@ const {
     getAllBills,
     getOneBill,
     newBill,
+    deleteBill,
 } = require('../../queries/debts/billsQuery');
 
 bills.get('/', async (req, res) => {
@@ -85,6 +86,34 @@ bills.post('/', async (req, res) => {
     } catch (error) {
         res.status(404).json({
             error: 'Resource not created',
+            message: error
+        });
+    };
+});
+
+bills.delete('/:id', async (req, res) => {
+    const { user_id, id } = req.params;
+
+    try {
+        const { success, payload } = await deleteBill(user_id, id);
+
+        if (success) {
+            res.status(200).json({
+                success,
+                payload
+            });
+
+        } else {
+            console.error(payload);
+            return {
+                success,
+                payload: `Failed to delete bill with id: ${id} for user_id: ${user_id}`
+            };
+        };
+
+    } catch (error) {
+        res.status(404).json({
+            error: 'Resource not deleted',
             message: error
         });
     };
