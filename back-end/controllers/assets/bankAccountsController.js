@@ -4,7 +4,8 @@ const bank_accounts = express.Router({ mergeParams: true });
 const {
     getAllBankAccounts,
     getOneBankAccount,
-    newBankAccount
+    newBankAccount,
+    updateBankAccount
 } = require('../../queries/assets/bankAccountsQuery');
 
 bank_accounts.get('/', async (req, res) => {
@@ -67,6 +68,34 @@ bank_accounts.post('/', async (req, res) => {
             res.status(404).json({
                 success,
                 payload: 'Failed to create new bank account'
+            });
+        };
+
+    } catch (error) {
+        res.status(404).json({
+            error: 'Resource not created',
+            message: error
+        });
+    };
+});
+
+bank_accounts.put('/:id', async (req, res) => {
+    const { user_id, id } = req.params;
+
+    try {
+        const { success, payload } = await updateBankAccount(user_id, id, req.body);
+
+        if (success && payload.id) {
+            res.status(201).json({
+                success,
+                payload
+            });
+
+        } else {
+            console.error(payload);
+            res.status(404).json({
+                success,
+                payload: 'Failed to update user'
             });
         };
 
