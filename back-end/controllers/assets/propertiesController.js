@@ -12,12 +12,12 @@ properties.get('/', async (req, res) => {
     const { user_id } = req.params;
 
     try {
-        const { success, payload } = await getAllProperties(user_id);
+        const { success, properties } = await getAllProperties(user_id);
 
         if (success) {
             res.status(200).json({
                 success,
-                payload
+                properties
             });
 
         } else {
@@ -40,12 +40,12 @@ properties.get('/:id', async (req, res) => {
     const { user_id, id } = req.params;
 
     try {
-        const { success, payload } = await getOneProperty(user_id, id);
+        const { success, property } = await getOneProperty(user_id, id);
 
-        if (success && payload.id) {
+        if (success && property.id) {
             res.status(200).json({
                 success,
-                payload
+                property
             });
 
         } else {

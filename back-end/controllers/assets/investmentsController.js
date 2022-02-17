@@ -13,12 +13,12 @@ investments.get('/', async (req, res) => {
     const { user_id } = req.params;
 
     try {
-        const { success, payload } = await getAllInvestments(user_id);
+        const { success, investments } = await getAllInvestments(user_id);
 
         if (success) {
             res.status(200).json({
                 success,
-                payload
+                investments
             });
 
         } else {
@@ -41,12 +41,12 @@ investments.get('/:id', async (req, res) => {
     const { user_id, id } = req.params;
 
     try {
-        const { success, payload } = await getOneInvestment(user_id, id);
+        const { success, investment } = await getOneInvestment(user_id, id);
 
-        if (success && payload.id) {
+        if (success && investment.id) {
             res.status(200).json({
                 success,
-                payload
+                investment
             });
 
         } else {

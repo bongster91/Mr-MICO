@@ -9,7 +9,7 @@ const getAllProperties = async (user_id) => {
 
         return {
             success: true,
-            payload: allProperties
+            properties: allProperties
         };
 
     } catch (error) {
@@ -29,7 +29,7 @@ const getOneProperty = async (user_id, id) => {
 
         return {
             success: true,
-            payload: oneProperty
+            property: oneProperty
         };
 
     } catch (error) {

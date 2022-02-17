@@ -14,12 +14,12 @@ debts.get('/', async (req, res) => {
     const { user_id } = req.params;
 
     try {
-        const { success, payload } = await getAllDebts(user_id);
+        const { success, debts } = await getAllDebts(user_id);
 
         if (success) {
             res.status(200).json({
                 success,
-                payload
+                debts
             });
 
         } else {

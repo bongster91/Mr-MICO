@@ -9,7 +9,7 @@ const getAllBankAccounts = async (user_id) => {
 
         return {
             success: true,
-            payload: allBankAccounts
+            bankAccounts: allBankAccounts
         };
 
     } catch (error) {
@@ -29,7 +29,7 @@ const getOneBankAccount = async (user_id, id) => {
 
         return {
             success: true,
-            payload: oneBankAccount
+            bankAccount: oneBankAccount
         };
 
     } catch (error) {

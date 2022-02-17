@@ -6,24 +6,44 @@ const investmentsController = require('./investmentsController');
 const propertiesController = require('./propertiesController');
 
 const {
-    getAllAssets
-} = require('../../queries/assets/assetsQuery');
+    getAllBankAccounts
+} = require('../../queries/assets/bankAccountsQuery');
+const {
+    getAllInvestments
+} = require('../../queries/assets/investmentsQuery');
+const {
+    getAllProperties
+} = require('../../queries/assets/propertiesQuery');
 
 assets.get('/', async (req, res) => {
     const { user_id } = req.params;
-    const { success, payload } = await getAllAssets(user_id);
+    
+    try {
+        const { bankAccounts } = await getAllBankAccounts(user_id);
+        const { investments } = await getAllInvestments(user_id);
+        const { properties } = await getAllProperties(user_id);
 
-    if (success) {
-        res.status(200).json({
-            success,
-            assets: payload
-        });
+        if (bankAccounts.length && investments.length && properties.length) {
+            res.status(200).json({
+                success: true,
+                allAssets: {
+                    bankAccounts,
+                    investments,
+                    properties
+                }
+            });
 
-    } else {
-        console.error(payload);
-        res.status(404).json({
-            success,
-            payload: 'Resources not found'
+        } else {
+            return {
+                success: false,
+                payload: `Failed to get all assets`
+            };
+        };
+
+    } catch (error) {
+        res.status(400).json({
+            error: 'Resources not found',
+            message: error
         });
     };
 });

@@ -13,11 +13,12 @@ bank_accounts.get('/', async (req, res) => {
     const { user_id } = req.params;
 
     try {
-        const { success, payload } = await getAllBankAccounts(user_id);
+        const { success, bankAccounts } = await getAllBankAccounts(user_id);
         
         if (success) {
             res.status(200).json({
-                 payload 
+                success,
+                bankAccounts
             });
             
         } else {
@@ -39,12 +40,12 @@ bank_accounts.get('/:id', async (req, res) => {
     const { user_id, id } = req.params;
 
     try {
-        const { success, payload } = await getOneBankAccount(user_id, id);
+        const { success, bankAccount } = await getOneBankAccount(user_id, id);
         
-        if (success && payload.id) {
+        if (success && bankAccount.id) {
             res.status(200).json({
                 success,
-                payload
+                bankAccount
             });
             
         } else {

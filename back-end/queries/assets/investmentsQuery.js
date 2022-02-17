@@ -9,7 +9,7 @@ const getAllInvestments = async (user_id) => {
 
         return {
             success: true,
-            payload: allInvestments
+            investments: allInvestments
         };
 
     } catch (error) {
@@ -29,7 +29,7 @@ const getOneInvestment = async (user_id, id) => {
 
         return {
             success: true,
-            payload: oneInvestment
+            investment: oneInvestment
         };
 
     } catch (error) {
