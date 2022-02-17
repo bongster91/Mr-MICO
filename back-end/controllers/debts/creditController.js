@@ -5,6 +5,7 @@ const {
     getOneCredit,
     newCredit,
     deleteCredit,
+    updateCredit
 } = require('../../queries/debts/creditQuery');
 
 credit.get('/', async (req, res) => {
@@ -114,6 +115,34 @@ credit.delete('/:id', async (req, res) => {
     } catch (error) {
         res.status(400).json({
             error: 'Resource not deleted',
+            message: error
+        });
+    };
+});
+
+credit.put('/:id', async (req, res) => {
+    const { user_id, id } = req.params;
+
+    try {
+        const { success, payload } = await updateCredit(user_id, id, req.body);
+
+        if (success && payload.id) {
+            res.status(200).json({
+                success,
+                payload
+            });
+
+        } else {
+            console.error(payload);
+            return {
+                success,
+                payload: `Failed to update credit with id: ${id} for user_id: ${user_id} with details: ${req.body}`
+            };
+        };
+
+    } catch (error) {
+        res.status(400).json({
+            error: 'Resource not updated',
             message: error
         });
     };

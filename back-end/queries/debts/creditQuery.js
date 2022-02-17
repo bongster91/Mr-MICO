@@ -95,9 +95,37 @@ const deleteCredit = async (user_id, id) => {
     };
 };
 
+const updateCredit = async (user_id, id, credit) => {
+    try {
+        const updatedCredit = await db.one(
+            `
+                UPDATE credit
+                SET
+                name=$1, type=$2, amount=$3
+                WHERE
+                user_id=$4 AND id=$5
+                RETURNING *
+            `,
+            [ credit.name, credit.type, credit.amount, user_id, id ]
+        );
+
+        return {
+            success: true,
+            payload: updatedCredit
+        };
+
+    } catch (error) {
+        return {
+            success: false,
+            payload: error
+        };
+    };
+};
+
 module.exports = {
     getAllCredit,
     getOneCredit,
     newCredit,
     deleteCredit,
+    updateCredit
 };
