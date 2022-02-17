@@ -14,7 +14,10 @@ assets.get('/', async (req, res) => {
     const { success, payload } = await getAllAssets(user_id);
 
     if (success) {
-        res.status(200).json(payload);
+        res.status(200).json({
+            success,
+            assets: payload
+        });
 
     } else {
         console.error(payload);

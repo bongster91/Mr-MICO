@@ -15,7 +15,7 @@ const getAllAssets = async (user_id) => {
         );
         return {
             success: true,
-            payload: allAssets
+            assets: allAssets
         };
 
     } catch (error) {

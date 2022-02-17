@@ -18,7 +18,7 @@ const getAllDebts = async (user_id) => {
 
         return {
             success: true,
-            payload: allDebts
+            debts: allDebts
         };
 
     } catch (error) {

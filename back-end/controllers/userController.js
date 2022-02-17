@@ -1,7 +1,6 @@
 const express = require('express');
 const users = express.Router({ mergeParams: true });
-const assetsController = require('./assets/assetsController');
-const debtsController = require('./debts/debtsController');
+const portfolioContoller = require('./portfolioController');
 
 const {
     getAllUsers,
@@ -140,7 +139,6 @@ users.delete('/:id', async (req, res) => {
     };
 });
 
-users.use('/:user_id/assets', assetsController);
-users.use('/:user_id/debts', debtsController);
+users.use('/:user_id/portfolio', portfolioContoller);
 
 module.exports = users;
