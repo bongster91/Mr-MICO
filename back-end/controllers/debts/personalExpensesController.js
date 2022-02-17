@@ -3,6 +3,7 @@ const personalExpenses = express.Router({ mergeParams: true });
 const {
     getAllPersonalExpenses,
     getOnePersonalExpense,
+    newPersonalExpense,
 } = require('../../queries/debts/personalExpensesQuery');
 
 personalExpenses.get('/', async (req, res) => {
@@ -56,6 +57,34 @@ personalExpenses.get('/:id', async (req, res) => {
     } catch (error) {
         res.status(400).json({
             error: 'Resource not found',
+            message: error
+        });
+    };
+});
+
+personalExpenses.post('/', async (req, res) => {
+    const { user_id } = req.params;
+
+    try {
+        const { success, payload } = await newPersonalExpense(user_id, req.body);
+
+        if (success && payload.id) {
+            res.status(200).json({
+                success,
+                payload
+            });
+
+        } else {
+            console.error(payload);
+            return {
+                success,
+                payload: `Failed to create new personal expense for user_id: ${user_id} with details: ${req.body}`
+            };
+        };
+
+    } catch (error) {
+        res.status(400).json({
+            error: 'Resource not created',
             message: error
         });
     };

@@ -44,7 +44,34 @@ const getOnePersonalExpense = async (user_id, id) => {
     };
 };
 
+const newPersonalExpense = async (user_id, expense) => {
+    try {
+        const newExpense = await db.one(
+            `
+                INSERT INTO personal_expenses
+                (name, type, amount, user_id)
+                VALUES
+                ($1, $2, $3, $4)
+                RETURNING *
+            `,
+            [ expense.name, expense.type, expense.amount, user_id ]
+        );
+
+        return {
+            success: true,
+            payload: newExpense
+        };
+
+    } catch (error) {
+        return {
+            success: false,
+            payload: error
+        };
+    };
+};
+
 module.exports = {
     getAllPersonalExpenses,
     getOnePersonalExpense,
+    newPersonalExpense,
 };
