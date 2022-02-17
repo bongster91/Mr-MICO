@@ -70,8 +70,62 @@ const newPersonalExpense = async (user_id, expense) => {
     };
 };
 
+const deletePersonalExpense = async (user_id, id) => {
+    try {
+        const deletedExpense = await db.one(
+            `
+                DELETE FROM personal_expenses
+                WHERE
+                user_id=$1 AND id=$2
+                RETURNING *
+            `,
+            [ user_id, id ]
+        );
+
+        return {
+            success: true,
+            payload: deletedExpense
+        };
+
+    } catch (error) {
+        return {
+            success: false,
+            payload: error
+        };
+    };
+};
+
+const updatePersonalExpense = async (user_id, id, expense) => {
+    try {
+        const updatedExpense = await db.one(
+            `
+                UPDATE personal_expenses
+                SET
+                name=$1, type=$2, amount=$3
+                WHERE
+                user_id=$4 AND id=$5
+                RETURNING *
+            `,
+            [ expense.name, expense.type, expense.amount, user_id, id ] 
+        );
+
+        return {
+            success: true,
+            payload: updatedExpense
+        };
+
+    } catch (error) {
+        return {
+            success: false,
+            payload: error
+        };
+    };
+};
+
 module.exports = {
     getAllPersonalExpenses,
     getOnePersonalExpense,
     newPersonalExpense,
+    deletePersonalExpense,
+    updatePersonalExpense
 };
