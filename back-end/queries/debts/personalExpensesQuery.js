@@ -20,6 +20,31 @@ const getAllPersonalExpenses = async (user_id) => {
     };
 };
 
+const getOnePersonalExpense = async (user_id, id) => {
+    try {
+        const oneExpense = await db.one(
+            `
+                SELECT * FROM personal_expenses
+                WHERE
+                user_id=$1 AND id=$2
+            `,
+            [ user_id, id ]
+        );
+
+        return {
+            success: true,
+            payload: oneExpense
+        };
+
+    } catch (error) {
+        return {
+            success: false,
+            payload: error
+        };
+    };
+};
+
 module.exports = {
     getAllPersonalExpenses,
+    getOnePersonalExpense,
 };
