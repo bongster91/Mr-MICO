@@ -22,7 +22,7 @@ bank_accounts.get('/', async (req, res) => {
             });
             
         } else {
-            console.error(payload);
+            console.error(bankAccounts);
             return {
                 success,
                 payload: `Failed to find bank accounts for user_id: ${user_id}`
@@ -49,7 +49,7 @@ bank_accounts.get('/:id', async (req, res) => {
             });
             
         } else {
-            console.error(payload);
+            console.error(bankAccount);
             return {
                 success,
                 payload: `Failed to find bank account with id: ${id}`

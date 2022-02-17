@@ -12,16 +12,16 @@ credit.get('/', async (req, res) => {
     const { user_id } = req.params;
 
     try {
-        const { success, payload } = await getAllCredit(user_id);
+        const { success, credits } = await getAllCredit(user_id);
 
         if (success) {
             res.status(200).json({
                 success,
-                payload
+                credits
             });
 
         } else {
-            console.error(payload);
+            console.error(credits);
             return {
                 success,
                 payload: `Failed to get all credit for user_id: ${user_id}`
@@ -40,16 +40,16 @@ credit.get('/:id', async (req, res) => {
     const { user_id, id } = req.params;
 
     try {
-        const { success, payload } = await getOneCredit(user_id, id);
+        const { success, credit } = await getOneCredit(user_id, id);
 
-        if (success && payload.id) {
+        if (success && credit.id) {
             res.status(200).json({
                 success, 
-                payload
+                credit
             });
 
         } else {
-            console.error(payload);
+            console.error(credit);
             return {
                 success,
                 payload: `Failed to get credit with id: ${id} for user_id: ${user_id}`

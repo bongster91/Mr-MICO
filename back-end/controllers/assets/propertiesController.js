@@ -21,7 +21,7 @@ properties.get('/', async (req, res) => {
             });
 
         } else {
-            console.error(payload);
+            console.error(properties);
             return {
                 success,
                 payload: `Failed to find properties for user_id: ${user_id}`
@@ -49,7 +49,7 @@ properties.get('/:id', async (req, res) => {
             });
 
         } else {
-            console.error(payload);
+            console.error(property);
             return {
                 success,
                 payload: `Failed to find property with id: ${id} for user_id: ${user_id}`

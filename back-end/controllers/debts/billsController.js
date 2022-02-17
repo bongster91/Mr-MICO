@@ -12,16 +12,16 @@ bills.get('/', async (req, res) => {
     const { user_id } = req.params;
 
     try {
-        const { success, payload } = await getAllBills(user_id);
+        const { success, bills } = await getAllBills(user_id);
 
         if (success) {
             res.status(200).json({
                 success,
-                payload
+                bills
             });
 
         } else {
-             console.error(payload);
+             console.error(bills);
              return {
                 success,
                 payload: `Failed to get all bills for user_id: ${user_id}`
@@ -40,16 +40,16 @@ bills.get('/:id', async (req, res) => {
     const { user_id, id } = req.params;
 
     try {
-        const { success, payload } = await getOneBill(user_id, id);
+        const { success, bill } = await getOneBill(user_id, id);
 
-        if (success && payload.id) {
+        if (success && bill.id) {
             res.status(200).json({
                 success,
-                payload
+                bill
             });
 
         } else {
-            console.error(payload);
+            console.error(bill);
             return {
                 success,
                 payload: `Failed to get bill with id: ${id} for user_id: ${user_id}`

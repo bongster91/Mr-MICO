@@ -9,7 +9,7 @@ const getAllLoans = async (user_id) => {
 
         return {
             success: true,
-            payload: allLoans
+            loans: allLoans
         };
 
     } catch (error) {
@@ -33,7 +33,7 @@ const getOneLoan = async (user_id, id) => {
 
         return {
             success: true,
-            payload: oneLoan
+            loan: oneLoan
         };
 
     } catch (error) {

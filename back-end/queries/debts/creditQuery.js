@@ -9,7 +9,7 @@ const getAllCredit = async (user_id) => {
 
         return {
             success: true,
-            payload: allCredit
+            credits: allCredit
         };
 
     } catch (error) {
@@ -33,7 +33,7 @@ const getOneCredit = async (user_id, id) => {
 
         return {
             success: true,
-            payload: oneCredit
+            credit: oneCredit
         };
 
     } catch (error) {

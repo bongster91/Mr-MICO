@@ -9,7 +9,7 @@ const getAllPersonalExpenses = async (user_id) => {
 
         return {
             success: true,
-            payload: allExpenses
+            expenses: allExpenses
         };
 
     } catch (error) {
@@ -33,7 +33,7 @@ const getOnePersonalExpense = async (user_id, id) => {
 
         return {
             success: true,
-            payload: oneExpense
+            expense: oneExpense
         };
 
     } catch (error) {

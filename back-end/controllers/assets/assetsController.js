@@ -1,42 +1,34 @@
 const express = require('express');
 const assets = express.Router({ mergeParams: true });
 
+// Controllers
 const bankAccountsController = require('./bankAccountsController');
 const investmentsController = require('./investmentsController');
 const propertiesController = require('./propertiesController');
 
+// Queries
 const {
-    getAllBankAccounts
-} = require('../../queries/assets/bankAccountsQuery');
-const {
-    getAllInvestments
-} = require('../../queries/assets/investmentsQuery');
-const {
-    getAllProperties
-} = require('../../queries/assets/propertiesQuery');
+    getAllAssets
+} = require('../../queries/assets/assetsQuery');
 
+// Routes
 assets.get('/', async (req, res) => {
     const { user_id } = req.params;
     
     try {
-        const { bankAccounts } = await getAllBankAccounts(user_id);
-        const { investments } = await getAllInvestments(user_id);
-        const { properties } = await getAllProperties(user_id);
+        const { success, assets } = await getAllAssets(user_id);
 
-        if (bankAccounts.length && investments.length && properties.length) {
+        if (success) {
             res.status(200).json({
-                success: true,
-                allAssets: {
-                    bankAccounts,
-                    investments,
-                    properties
-                }
+                success,
+                allAssets: assets
             });
 
         } else {
+            console.error(assets);
             return {
                 success: false,
-                payload: `Failed to get all assets`
+                payload: `Failed to get all assets for user_id: ${user_id}`
             };
         };
 

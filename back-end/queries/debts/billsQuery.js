@@ -9,7 +9,7 @@ const getAllBills = async (user_id) => {
 
         return {
             success: true,
-            payload: allBills
+            bills: allBills
         };
 
     } catch (error) {
@@ -29,7 +29,7 @@ const getOneBill = async (user_id, id) => {
 
         return {
             success: true,
-            payload: oneBill
+            bill: oneBill
         };
 
     } catch (error) {

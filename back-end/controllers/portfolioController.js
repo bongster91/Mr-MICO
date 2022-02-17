@@ -21,15 +21,15 @@ portfolio.get('/', async (req, res) => {
             res.status(200).json({
                 success: true,
                 portfolio: {
-                    allAssets,
-                    allDebts
+                    allAssets: allAssets.assets,
+                    allDebts: allDebts.debts
                 }
             });
-            
+
         } else {
             return {
                 success: false,
-                payload: `Failed to get all assets: ${allAssets} and all debts: ${allDebts}`
+                payload: `Failed to get all assets: ${allAssets} and all debts: ${allDebts} for user_id: ${user_id}`
             };
         };
 

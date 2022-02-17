@@ -12,16 +12,16 @@ loans.get('/', async (req, res) => {
     const { user_id } = req.params;
 
     try {
-        const { success, payload } = await getAllLoans(user_id);
+        const { success, loans } = await getAllLoans(user_id);
 
         if (success) {
             res.status(200).json({
                 success,
-                payload
+                loans
             });
 
         } else {
-            console.error(payload);
+            console.error(loans);
             return {
                 success,
                 payload: `Failed to get all loans for user_id: ${user_id}`
@@ -40,15 +40,16 @@ loans.get('/:id', async (req, res) => {
     const { user_id, id } = req.params;
 
     try {
-        const { success, payload } = await getOneLoan(user_id, id);
+        const { success, loan } = await getOneLoan(user_id, id);
 
-        if (success && payload.id) {
+        if (success && loan.id) {
             res.status(200).json({
                 success,
-                payload
+                loan
             });
 
         } else {
+            console.error(loan);
             return {
                 success,
                 payload: `Failed to get one loan with id: ${id} for user_id: ${user_id}`

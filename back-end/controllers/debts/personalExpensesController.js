@@ -12,16 +12,16 @@ personalExpenses.get('/', async (req, res) => {
     const { user_id } = req.params;
 
     try {
-        const { success, payload } = await getAllPersonalExpenses(user_id);
+        const { success, expenses } = await getAllPersonalExpenses(user_id);
 
         if (success) {
             res.status(200).json({
                 success,
-                payload
+                expenses
             });
 
         } else {
-            console.error(payload);
+            console.error(expenses);
             return {
                 success,
                 payload: `Failed to get all personal expenses for user_id: ${user_id}`
@@ -40,16 +40,16 @@ personalExpenses.get('/:id', async (req, res) => {
     const { user_id, id } = req.params;
 
     try {
-        const { success, payload } = await getOnePersonalExpense(user_id, id);
+        const { success, expense } = await getOnePersonalExpense(user_id, id);
 
-        if (success && payload.id) {
+        if (success && expense.id) {
             res.status(200).json({
                 success,
-                payload
+                expense
             });
 
         } else {
-            console.error(payload);
+            console.error(expense);
             return {
                 success,
                 payload: `Failed to get one personal expense with id: ${id} for user_id: ${user_id}`

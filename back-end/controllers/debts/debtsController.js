@@ -1,31 +1,34 @@
 const express = require('express');
 const debts = express.Router({ mergeParams: true });
 
+// Controllers
 const billsController = require('./billsController');
 const loansController = require('./loansController');
 const creditController = require('./creditController');
 const personalExpensesController = require('./personalExpensesController');
 
+// Queries
 const {
     getAllDebts
 } = require('../../queries/debts/debtsQuery');
 
+// Routes
 debts.get('/', async (req, res) => {
     const { user_id } = req.params;
 
     try {
-        const { success, debts } = await getAllDebts(user_id);
+        const { success, debts} = await getAllDebts(user_id);
 
         if (success) {
             res.status(200).json({
-                success,
-                debts
+                success: true,
+                allDebts: debts
             });
 
         } else {
-            console.error(payload);
+            console.error(debts);
             return {
-                success,
+                success: false,
                 payload: `Failed to get all debts for user_id: ${user_id}`
             };
         };

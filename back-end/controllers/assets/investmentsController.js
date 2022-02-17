@@ -22,7 +22,7 @@ investments.get('/', async (req, res) => {
             });
 
         } else {
-            console.error(payload);
+            console.error(investments);
             return {
                 success,
                 payload: `Failed to find investments with user_id: ${user_id}`
@@ -50,7 +50,7 @@ investments.get('/:id', async (req, res) => {
             });
 
         } else {
-            console.error(payload);
+            console.error(investment);
             return {
                 success,
                 payload: `Failed to find investment with user_id: ${user_id} at id: ${id}`
