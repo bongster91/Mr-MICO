@@ -1,0 +1,21 @@
+{
+    "name": "mr-mico",
+    "": "",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+        "start": "cd backend && npm i && npm start",
+        "test": ""
+    },
+    "repository": {
+        "type": "git",
+        "url": "git@github.com:bongster91/Mr-MICO.git"
+    },
+    "author": {
+        "name": "Grace Bong",
+        "email": "gracebong.park@gmail.com",
+        "url": "https://suspicious-jang-7762b9.netlify.app/"
+    },
+    "homepage": "https://github.com/bongster91/Mr-MICO"
+
+}

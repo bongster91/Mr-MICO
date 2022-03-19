@@ -6,7 +6,11 @@
 <br>
 A financial app where you can see all your assets and debt to budget and decide where to allocate your funds.
 <br>
+<br>
 
-Heroku: https://stormy-hamlet-50889.herokuapp.com/
-Netlify: https://hopeful-austin-12c151.netlify.app/
+[Netlify](https://hopeful-austin-12c151.netlify.app/)
+<br>
+
+[Heroku](https://mr-mico.herokuapp.com/)
+
 
