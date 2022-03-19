@@ -1,4 +1,7 @@
-\c dbo407mpb4m0o9;
+DROP DATABASE IF EXISTS mico_db;
+CREATE DATABASE mico_db;
+
+\c d31h2045o4dj5q;
 
 DROP TABLE IF EXISTS users;
 CREATE TABLE users (

@@ -1,4 +1,4 @@
-\c dbo407mpb4m0o9;
+\c d31h2045o4dj5q;
 
 INSERT INTO users (
     first_name, last_name, password, phone_number, address, email, admin
