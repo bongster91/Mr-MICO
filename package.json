@@ -4,7 +4,7 @@
     "description": "",
     "main": "index.js",
     "scripts": {
-        "start": "cd backend && npm i && npm start",
+        "start": "cd back-end && npm i && npm start",
         "test": ""
     },
     "repository": {
