@@ -16,16 +16,26 @@ const {
 const { validateUser } = require('../helper/userValidation');
 
 users.get('/', async (req, res) => {
-    const { success, payload } = await getAllUsers();
+    try {
+        const { success, allUsers } = await getAllUsers();
+    
+        if (success) {
+            res.status(200).json({
+                success: true,
+                allUsers: allUsers
+            });
+            
+        } else {
+            return {
+                success: false,
+                payload: `Failed to get all users with ${payload}`
+            };
+        }; 
 
-    if (success) {
-        res.status(200).json(payload);
-
-    } else {
-        console.error(payload);
-        res.status(404).json({
-            success,
-            payload: 'Resources not found'
+    } catch (error) {
+        res.status(400).json({
+            error: 'Resources not found',
+            message: error
         });
     };
 });
@@ -33,12 +43,12 @@ users.get('/', async (req, res) => {
 users.get('/:id', async (req, res) => {
     const { id } = req.params;
     try {
-        const { success, payload } = await getOneUser(id);
+        const { success, user } = await getOneUser(id);
 
-        if (payload.user_id) {
+        if (user.user_id) {
             res.status(200).json({
                 success,
-                payload
+                user
             });
 
         } else {

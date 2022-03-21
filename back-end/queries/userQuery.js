@@ -5,7 +5,7 @@ const getAllUsers = async () => {
         const allUsers = await db.any('SELECT * FROM users');
         return {
             success: true,
-            payload: allUsers
+            allUsers: allUsers
         };
 
     } catch (error) {
@@ -21,7 +21,7 @@ const getOneUser = async (id) => {
         const oneUser = await db.one('SELECT * FROM users WHERE user_id=$1', id);
         return {
             success: true,
-            payload: oneUser
+            user: oneUser
         };
 
     } catch (error) {
