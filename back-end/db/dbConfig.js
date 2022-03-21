@@ -13,7 +13,7 @@ const {
 const cn = DATABASE_URL 
 ? {
     connectionString: DATABASE_URL,
-    max: 30,
+    max: 100,
     ssl: {
         rejectUnauthorized: false,
     }
