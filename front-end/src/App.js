@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 // Pages
 import Four0Four from './Pages/Misc/Four0Four';
 import Home from './Pages/General/Home';
-import Portfolio from './Pages/User/Portfolio';
+import PortfolioPage from './Pages/User/Portfolio';
 import Login from './Pages/General/Login';
 import UserHome from './Pages/User/UserHome';
 import Profile from './Pages/User/Profile';
@@ -30,7 +30,7 @@ function App() {
           <Route path='/login' element={<Login />} />
           <Route path='/users/:id' element={<UserHome />} />
           <Route path='/users/:id/profile' element={<Profile />} />
-          <Route path='/users/:id/portfolio' element={<Portfolio />}/>
+          <Route path='/users/:id/portfolio' element={<PortfolioPage />}/>
 
           <Route path='/users/:id/assets' element={<Assets />} />
             <Route path='/users/:id/assets/bank_accounts' element={<BankAccounts />} />

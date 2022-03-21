@@ -1,9 +1,14 @@
 import React from 'react';
+import PortfolioComponent from '../../Components/Portfolio/PortfolioComponent';
 
-function Portfolio() {
-  return <div>
-      Portfolio Page
-  </div>;
-}
 
-export default Portfolio;
+function PortfolioPage() {
+  return (
+      <div>
+        <PortfolioComponent />
+      </div>
+
+  )
+};
+
+export default PortfolioPage;

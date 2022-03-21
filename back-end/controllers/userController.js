@@ -28,7 +28,7 @@ users.get('/', async (req, res) => {
         } else {
             return {
                 success: false,
-                payload: `Failed to get all users with ${payload}`
+                payload: `Failed to get all users with ${allUsers}`
             };
         }; 
 
