@@ -18,7 +18,7 @@ INSERT INTO bank_accounts (
 ;
 
 INSERT INTO properties (
-    user_id, name, type, value
+    user_id, name, type, amount
 ) VALUES
     (1, '4 Tier Cat Tree Extravaganza', 'Home', 20000),
     (1, 'Paw Pool Raft', 'Vehicle', 5000),

@@ -10,6 +10,11 @@ const {
     getAllDebts
 } = require('../queries/debts/debtsQuery');
 
+const { 
+    getTotalAssets,
+    getTotalDebts,
+} = require('../helper/portfolioCalculations');
+
 portfolio.get('/', async (req, res) => {
     const { user_id } = req.params;
 
@@ -18,11 +23,16 @@ portfolio.get('/', async (req, res) => {
         const allDebts = await getAllDebts(user_id);
 
         if (allAssets.success && allDebts.success) {
+            let totalAssetAmount = getTotalAssets(allAssets.assets);
+            let totalDebtAmount = getTotalDebts(allDebts.debts);
+        
             res.status(200).json({
                 success: true,
                 portfolio: {
                     allAssets: allAssets.assets,
-                    allDebts: allDebts.debts
+                    allDebts: allDebts.debts,
+                    totalAssetAmount: totalAssetAmount,
+                    totalDebtAmount: totalDebtAmount
                 }
             });
 
