@@ -1,8 +1,9 @@
 import React from 'react';
+import AllAssetsComponent from '../../Components/Portfolio/Assets/AllAssetsComponent';
 
 function Assets() {
   return <div>
-      Assets page
+      <AllAssetsComponent />
   </div>;
 }
 

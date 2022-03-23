@@ -12,8 +12,6 @@ const API = apiURL();
 
 function PortfolioComponent() {
   const [ portfolio, setPortfolio ] = useState({});
-  const [ allAssets, setAllAssets ] = useState({});
-  const [ allDebts, setAllDebts ] = useState({});
   const [ totalAssetAmount, setTotalAssetAmount ] = useState({});
   const [ totalDebtAmount, setTotalDebtAmount ] = useState({});
 
@@ -23,8 +21,6 @@ function PortfolioComponent() {
       .then(
         (response) => {
           setPortfolio(response.data.portfolio)
-          setAllAssets(response.data.portfolio.allAssets)
-          setAllDebts(response.data.portfolio.allDebts)
           setTotalAssetAmount(response.data.portfolio.totalAssetAmount)
           setTotalDebtAmount(response.data.portfolio.totalDebtAmount)
         },
