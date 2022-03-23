@@ -6,6 +6,7 @@ import { apiURL } from '../../Util/apiURL';
 
 import PortfolioAssetsColumn from './PortfolioAssetsColumn';
 import PortfolioDebtsColumn from './PortfolioDebtsColumn';
+import './PortfolioComponent.scss';
 
 const API = apiURL();
 
@@ -37,22 +38,33 @@ function PortfolioComponent() {
   return (
     <div className='portfolio-container'>
       {console.log(portfolio)}
-      <div className='portfolio-balance'>
-        <h3> Total Portfolio Balance: 
-          {totalAssetAmount.assetsTotal - totalDebtAmount.debtTotal}
+      <div className='portfolio-container__portfolio-balance'>
+        <h3> Total Portfolio Balance: {totalAssetAmount.assetsTotal - totalDebtAmount.debtTotal}
         </h3>
       </div>
 
-      <div className='D3-visuals'>D3 visualization</div>
+      <div className='portfolio-container__D3-visuals'>D3 visualization</div>
 
-      <div className='assets-column'>
-        <h3>Assets Balance: {totalAssetAmount.assetsTotal}</h3>
-        <PortfolioAssetsColumn allAssetsAmount={totalAssetAmount} />        
-      </div>
+      <div className='portfolio-container__portfolio-columns'>
 
-      <div className='debts-column'>
-        <h3>Debts Balance: {totalDebtAmount.debtTotal}</h3>
-        <PortfolioDebtsColumn allDebtsAmount={totalDebtAmount} />
+        <div className='portfolio-container__portfolio-columns__assets-column'>
+          <Link className='assets-link' to={`/users/1/assets`}>
+            <h2>Assets</h2>
+          </Link>
+
+          <h3>Assets Balance: {totalAssetAmount.assetsTotal}</h3>
+          <PortfolioAssetsColumn allAssetsAmount={totalAssetAmount} />        
+        </div>
+
+        <div className='portfolio-container__portfolio-columns__debts-column'>
+          <Link className='debts-link' to={`/users/1/debts`}>
+            <h2>Debts</h2>
+          </Link>
+
+          <h3>Debts Balance: {totalDebtAmount.debtTotal}</h3>
+          <PortfolioDebtsColumn allDebtsAmount={totalDebtAmount} />
+        </div>
+
       </div>
     </div>
   );

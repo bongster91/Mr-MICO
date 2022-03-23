@@ -1,0 +1,14 @@
+@import '../../Styles/colors';
+@import '../../Styles/layouts';
+
+.portfolio-container {
+    position: relative;
+    margin-top: 1rem;
+    border-radius: 10px;
+    padding: 20px;
+
+    &__portfolio-columns {
+        @include two-column-grid(1, 1);
+        
+    }
+}
