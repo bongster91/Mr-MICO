@@ -19,7 +19,7 @@ CREATE TABLE bank_accounts (
     id BIGSERIAL PRIMARY KEY,
     bank VARCHAR(50),
     type TEXT,
-    amount BIGINT,
+    amount NUMERIC(1000, 2),
     user_id INTEGER REFERENCES users(user_id) ON DELETE CASCADE
 );
 
@@ -28,7 +28,7 @@ CREATE TABLE properties (
     id BIGSERIAL PRIMARY KEY,
     name VARCHAR(50),
     type TEXT,
-    amount BIGINT,
+    amount NUMERIC(1000, 2),
     user_id INTEGER REFERENCES users(user_id) ON DELETE CASCADE
 );
 
@@ -37,7 +37,7 @@ CREATE TABLE investments (
     id BIGSERIAL PRIMARY KEY,
     name VARCHAR(50),
     type TEXT,
-    amount BIGINT,
+    amount NUMERIC(1000, 2),
     user_id INTEGER REFERENCES users(user_id) ON DELETE CASCADE
 );
 
@@ -46,7 +46,7 @@ CREATE TABLE bills (
     id BIGSERIAL PRIMARY KEY,
     name VARCHAR(50),
     type TEXT,
-    amount BIGINT,
+    amount NUMERIC(1000, 2),
     user_id INTEGER REFERENCES users(user_id) ON DELETE CASCADE
 );
 
@@ -55,7 +55,7 @@ CREATE TABLE loans (
     id BIGSERIAL PRIMARY KEY,
     name VARCHAR(50),
     type TEXT,
-    amount BIGINT,
+    amount NUMERIC(1000, 2),
     user_id INTEGER REFERENCES users(user_id) ON DELETE CASCADE
 );
 
@@ -64,7 +64,7 @@ CREATE TABLE credit (
     id BIGSERIAL PRIMARY KEY,
     name VARCHAR(50),
     type TEXT,
-    amount BIGINT,
+    amount NUMERIC(1000, 2),
     user_id INTEGER REFERENCES users(user_id) ON DELETE CASCADE
 );
 
@@ -73,6 +73,6 @@ CREATE TABLE personal_expenses (
     id BIGSERIAL PRIMARY KEY,
     name VARCHAR(50),
     type TEXT,
-    amount BIGINT,
+    amount NUMERIC(1000, 2),
     user_id INTEGER REFERENCES users(user_id) ON DELETE CASCADE
 );

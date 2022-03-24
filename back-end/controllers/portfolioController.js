@@ -21,7 +21,7 @@ portfolio.get('/', async (req, res) => {
     try {
         const allAssets = await getAllAssets(user_id);
         const allDebts = await getAllDebts(user_id);
-
+        
         if (allAssets.success && allDebts.success) {
             let totalAssetAmount = getTotalAssets(allAssets.assets);
             let totalDebtAmount = getTotalDebts(allDebts.debts);

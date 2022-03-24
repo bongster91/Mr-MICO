@@ -1,12 +1,13 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { Link } from 'react-router-dom';
-import { useState, useEffect } from 'react';
+import { Link, useParams } from 'react-router-dom';
 import { apiURL } from '../../Util/apiURL';
 
-import PortfolioAssetsColumn from './PortfolioAssetsColumn';
-import PortfolioDebtsColumn from './PortfolioDebtsColumn';
+import PortfolioAssetsColumn from './PortfolioColumns/PortfolioAssetsColumn';
+import PortfolioDebtsColumn from './PortfolioColumns/PortfolioDebtsColumn';
 import './PortfolioComponent.scss';
+
+import { addCommas } from '../../Helper/AddCommasToNumbers';
 
 const API = apiURL();
 
@@ -14,10 +15,11 @@ function PortfolioComponent() {
   const [ portfolio, setPortfolio ] = useState({});
   const [ totalAssetAmount, setTotalAssetAmount ] = useState({});
   const [ totalDebtAmount, setTotalDebtAmount ] = useState({});
+  const { user_id } = useParams();
 
   useEffect(() => {
     axios
-      .get(`${API}/users/1/portfolio`)
+      .get(`${API}/users/${user_id}/portfolio`)
       .then(
         (response) => {
           setPortfolio(response.data.portfolio)
@@ -29,38 +31,24 @@ function PortfolioComponent() {
       .catch(
         (c) => console.warn('catch', c)
       );
-  }, []);
+  }, [ user_id ]);
 
+  const portfolioBalance = ( totalAssetAmount.assetsTotal - totalDebtAmount.debtTotal).toFixed(2);
+  
   return (
     <div className='portfolio-container'>
-      {console.log(portfolio)}
+     
       <div className='portfolio-container__portfolio-balance'>
-        <h3> Total Portfolio Balance: {totalAssetAmount.assetsTotal - totalDebtAmount.debtTotal}
-        </h3>
+        <h1> 
+          Total Portfolio Balance: ${ addCommas(portfolioBalance) }
+        </h1>
       </div>
 
       <div className='portfolio-container__D3-visuals'>D3 visualization</div>
 
       <div className='portfolio-container__portfolio-columns'>
-
-        <div className='portfolio-container__portfolio-columns__assets-column'>
-          <Link className='assets-link' to={`/users/1/assets`}>
-            <h2>Assets</h2>
-          </Link>
-
-          <h3>Assets Balance: {totalAssetAmount.assetsTotal}</h3>
-          <PortfolioAssetsColumn allAssetsAmount={totalAssetAmount} />        
-        </div>
-
-        <div className='portfolio-container__portfolio-columns__debts-column'>
-          <Link className='debts-link' to={`/users/1/debts`}>
-            <h2>Debts</h2>
-          </Link>
-
-          <h3>Debts Balance: {totalDebtAmount.debtTotal}</h3>
-          <PortfolioDebtsColumn allDebtsAmount={totalDebtAmount} />
-        </div>
-
+        <PortfolioAssetsColumn totalAssetAmount={totalAssetAmount} user_id={user_id} />        
+        <PortfolioDebtsColumn totalDebtAmount={totalDebtAmount} user_id={user_id} />
       </div>
     </div>
   );

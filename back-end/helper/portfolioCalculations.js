@@ -5,10 +5,10 @@ const getTotalAssets = (assetObj) => {
     const totalAssetAmount = bankAccountsTotal + investmentsTotal + propertiesTotal;
   
     return {
-        assetsTotal: totalAssetAmount,
-        bankAccountsTotal: bankAccountsTotal,
-        investmentsTotal: investmentsTotal,
-        propertiesTotal: propertiesTotal
+        assetsTotal: totalAssetAmount.toFixed(2),
+        bankAccountsTotal: bankAccountsTotal.toFixed(2),
+        investmentsTotal: investmentsTotal.toFixed(2),
+        propertiesTotal: propertiesTotal.toFixed(2)
     };
 };
 
@@ -20,16 +20,16 @@ const getTotalDebts = (debtObj) => {
     const totalDebtAmount = billsTotal + creditsTotal + loansTotal + expensesTotal;
    
     return {
-        debtTotal: totalDebtAmount,
-        billsTotal: billsTotal,
-        creditsTotal: creditsTotal,
-        loansTotal: loansTotal,
-        expensesTotal: expensesTotal
+        debtTotal: totalDebtAmount.toFixed(2),
+        billsTotal: billsTotal.toFixed(2),
+        creditsTotal: creditsTotal.toFixed(2),
+        loansTotal: loansTotal.toFixed(2),
+        expensesTotal: expensesTotal.toFixed(2)
     };
 };
 
 const calculateTotal = (array) => {
-    let total = 0;
+    let total = 0.00;
     array.forEach(el => total += Number(el.amount));
     return total;
 };

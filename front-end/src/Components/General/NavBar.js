@@ -19,11 +19,11 @@ function NavBar() {
       </li>
 
       <li className='navbar__list__link'>
-        <Link to='/users/:id/portfolio'>Portfolio</Link>
+        <Link to='/users/:user_id/portfolio'>Portfolio</Link>
       </li>
 
       <li className='navbar__list__link'>
-        <Link to='/users/:id/profile'>Profile</Link>
+        <Link to='/users/:user_id/profile'>Profile</Link>
       </li>
       
     </ul>

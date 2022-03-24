@@ -1,18 +1,23 @@
 const addCommas = (num) => {
-    num = num.toString();
-    if (num.length <= 3) return num;
-    
+    //num = num.toString();
     let strArr = [];
-    let count = 0;
+    let count = 1;
 
+    if (num.length <= 6) return num;
+      
     for (let i = num.length - 1; i >= 0; i--) {
-        if (count !== 3) {
+ 
+        if (i >= num.length - 4) {
+            strArr.unshift(num[i]);
+
+        } else if (count !== 3) {
             strArr.unshift(num[i]);
             count++;
 
         } else {
             strArr.unshift(',');
-            count = 0;
+            strArr.unshift(num[i]);
+            count = 1;
         };
     };
 

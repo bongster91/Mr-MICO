@@ -21,7 +21,7 @@ assets.get('/', async (req, res) => {
 
         if (success) {
             let totalAssetAmount = getTotalAssets(assets);
-
+     
             res.status(200).json({
                 success,
                 allAssets: {
