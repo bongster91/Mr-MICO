@@ -5,12 +5,16 @@ import ExpandLessRoundedIcon from '@mui/icons-material/ExpandLessRounded';
 import Collapse from '@mui/material/Collapse';
 
 function BankAccountsComponent(props) {
-    const { bankAccounts, handleExpandContent, expandContent, bankAccountsTotal } = props;
-    const [ showBanks, setShowBanks ] = useState(false);
-    
+    const { bankAccounts, bankAccountsTotal } = props;
+    const [ expandContent, setExpandContent ] = useState(false);
+
+    const handleExpandContent = (e) => {
+        setExpandContent(!expandContent);
+    };
+
     return (
         <section className='bank-accounts'>
-            <h3 className='bank-accounts-header'>
+            <h2 className='bank-accounts-header'>
                 Bank Acccounts: {bankAccountsTotal}
 
                 <span onClick={handleExpandContent}>
@@ -21,7 +25,7 @@ function BankAccountsComponent(props) {
                         <ExpandMoreRoundedIcon />
                     }
                 </span>
-            </h3>
+            </h2>
 
             <Collapse      
                 collapsedSize='100%'

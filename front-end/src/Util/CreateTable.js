@@ -38,12 +38,12 @@ const CreateTable = ({ props }) => {
                                     <TableRow key={i} sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
 
                                         {
-                                            columnNames.map(key => {
+                                            columnNames.map((key, index) => {
                                                 let key2 = key[0].toLowerCase() + key.slice(1);
                                                 currentData = el[key2];
                                     
                                                 return (
-                                                    <TableCell component='tb' scope='row' align='left'> {currentData}</TableCell>
+                                                    <TableCell component='th' scope='row' align='left' key={index}> {currentData}</TableCell>
                                                 );
                                             })
                                         }
