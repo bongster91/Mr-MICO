@@ -18,7 +18,7 @@ import Credit from './Pages/Debts/Credit';
 import PersonalExpenses from './Pages/Debts/PersonalExpenses';
 
 // Components
-import NavBar from './Components/General/NavBar';
+import NavBar from './Components/General/NavBar/NavBar';
 
 function App() {
   return (

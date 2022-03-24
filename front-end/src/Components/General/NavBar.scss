@@ -10,6 +10,11 @@
     position: sticky;
     top: 0;
     width: 100%;
+    font-family: 'Baloo2', cursive;
+
+    :visited {
+        color: black;
+    };
 
     &__list {
         float: left;
@@ -18,24 +23,31 @@
         display: inline-flex;
         align-items: center;
         height: 100%;
-
-       :visited {
-           color: black;
-       };
-
-    //    :hover {
-    //        background-color: green;
-    //    }
-
+        font-size:inherit;
+        
+        //    :hover {
+            //        background-color: green;
+            //    }
+            
         &__link {
             cursor: pointer;
             display: block;
             padding: 15px;
             text-align: center;
         };
-
+            
         &__logo {
             padding: 5px;
+        };
+
+        &__settings {
+            cursor: pointer;
+            
+            &__link {
+                cursor: pointer;
+                display: block;
+                padding: 5px;
+            };
         };
     };
 };
