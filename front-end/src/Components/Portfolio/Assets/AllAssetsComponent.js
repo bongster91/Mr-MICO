@@ -2,6 +2,9 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { apiURL } from '../../../Util/apiURL';
 
+// Helper
+import { addCommas } from '../../../Helper/AddCommasToNumbers';
+
 // MUI
 import TextField from '@mui/material/TextField';
 
@@ -37,8 +40,7 @@ function AllAssetsComponent() {
         <div className='D3-Assets-chart'>
             D3 All Assets chart
         </div>
-        {/* {console.log(allAssets)} */}
-        <h1>Assets Balance: {assetBalances.assetsTotal}</h1>
+        <h1>Assets Balance: ${addCommas(assetBalances.assetsTotal)}</h1>
 
         <div className='search-bar'>
             <TextField

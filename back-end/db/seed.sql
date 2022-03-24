@@ -70,7 +70,7 @@ INSERT INTO personal_expenses (
     user_id, name, type, amount
 ) VALUES
     (1, 'Relaxing Sauna', 'spa day', 500),
-    (1, 'Starbucks', 'vanilla latte', 10), 
+    (1, 'Starbucks', 'vanilla latte', 10.50), 
     (1, 'Kitty Rolex', 'watch on sale', 12000), 
     (1, 'Catnip', 'snacks for the month', 950)
 ;

@@ -3,6 +3,7 @@ import CreateTable from '../../../../Util/CreateTable';
 import ExpandMoreRoundedIcon from '@mui/icons-material/ExpandMoreRounded';
 import ExpandLessRoundedIcon from '@mui/icons-material/ExpandLessRounded';
 import Collapse from '@mui/material/Collapse';
+import Fade from '@mui/material/Fade';
 
 function PropertiesComponent(props) {
   const { properties, propertiesTotal } = props;
@@ -27,15 +28,17 @@ function PropertiesComponent(props) {
               </span>
           </h2>
 
-          <Collapse      
-              collapsedSize='100%'
-              in={expandContent}
-              orientation='vertical'
-              timeout='auto'
-              unmountOnExit
-          >
-              <CreateTable props={properties} />
-          </Collapse>
+          <Fade in={expandContent}>
+              <Collapse      
+                  collapsedSize='100%'
+                  in={expandContent}
+                  orientation='vertical'
+                  timeout='auto'
+                  unmountOnExit
+              >
+                  <CreateTable props={properties} />
+              </Collapse>
+          </Fade>  
     </section>
     
   );

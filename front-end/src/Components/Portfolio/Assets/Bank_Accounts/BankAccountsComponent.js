@@ -3,6 +3,7 @@ import CreateTable from '../../../../Util/CreateTable';
 import ExpandMoreRoundedIcon from '@mui/icons-material/ExpandMoreRounded';
 import ExpandLessRoundedIcon from '@mui/icons-material/ExpandLessRounded';
 import Collapse from '@mui/material/Collapse';
+import Fade from '@mui/material/Fade';
 
 function BankAccountsComponent(props) {
     const { bankAccounts, bankAccountsTotal } = props;
@@ -26,16 +27,18 @@ function BankAccountsComponent(props) {
                     }
                 </span>
             </h2>
-
-            <Collapse      
-                collapsedSize='100%'
-                in={expandContent}
-                orientation='vertical'
-                timeout='auto'
-                unmountOnExit
-            >
-                <CreateTable props={bankAccounts} />
-            </Collapse>
+            
+            <Fade in={expandContent}>
+                <Collapse      
+                    collapsedSize='100%'
+                    in={expandContent}
+                    orientation='vertical'
+                    timeout='auto'
+                    unmountOnExit
+                    >
+                    <CreateTable props={bankAccounts} />
+                </Collapse>
+            </Fade>
         </section>
     );
 };
