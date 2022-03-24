@@ -1,5 +1,6 @@
 const express = require('express');
 const assets = express.Router({ mergeParams: true });
+const { getTotalAssets } = require('../../helper/portfolioCalculations');
 
 // Controllers
 const bankAccountsController = require('./bankAccountsController');
@@ -19,9 +20,14 @@ assets.get('/', async (req, res) => {
         const { success, assets } = await getAllAssets(user_id);
 
         if (success) {
+            let totalAssetAmount = getTotalAssets(assets);
+
             res.status(200).json({
                 success,
-                allAssets: assets
+                allAssets: {
+                    assets: assets,
+                    assetBalances: totalAssetAmount
+                }
             });
 
         } else {
