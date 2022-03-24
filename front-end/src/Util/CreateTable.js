@@ -6,6 +6,8 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import MoreVertRoundedIcon from '@mui/icons-material/MoreVertRounded';
 
+import { addCommas } from '../Helper/AddCommasToNumbers';
+
 const CreateTable = ({ props }) => {
     const columnNames = [];
 
@@ -23,7 +25,9 @@ const CreateTable = ({ props }) => {
                         {
                             columnNames.map((category, i) => {
                                 return (
-                                    <TableCell key={i} align='left'> {category} </TableCell>
+                                    <TableCell key={i} align='left' className='table-header'>
+                                        {category} 
+                                    </TableCell>
                                 );
                             })
                         }
@@ -41,14 +45,27 @@ const CreateTable = ({ props }) => {
                                             columnNames.map((key, index) => {
                                                 let key2 = key[0].toLowerCase() + key.slice(1);
                                                 currentData = el[key2];
-                                    
-                                                return (
-                                                    <TableCell component='th' scope='row' align='left' key={index}> {currentData}</TableCell>
-                                                );
+                                                
+                                                if (key2 === 'amount') {
+                                                    return (
+                                                        <TableCell component='th' scope='row' align='left' key={index} className='table-row'>
+                                                             ${ addCommas(currentData) }
+                                                        </TableCell>
+                                                    );
+
+                                                } else {
+                                                    return (
+                                                        <TableCell component='th' scope='row' align='left' key={index} className='table-row'>
+                                                            {currentData}
+                                                        </TableCell>
+                                                    );
+                                                };
                                             })
                                         }
 
-                                        <TableCell><MoreVertRoundedIcon /></TableCell>    
+                                        <TableCell>
+                                            <MoreVertRoundedIcon />
+                                        </TableCell>    
                                     </TableRow>
                                 );
                             })                  

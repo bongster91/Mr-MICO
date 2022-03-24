@@ -5,6 +5,8 @@ import ExpandLessRoundedIcon from '@mui/icons-material/ExpandLessRounded';
 import Collapse from '@mui/material/Collapse';
 import Fade from '@mui/material/Fade';
 
+import { addCommas } from '../../../../Helper/AddCommasToNumbers';
+
 function InvestmentsComponent(props) {
   const { investments, investmentsTotal } = props;
   const [ expandContent, setExpandContent ] = useState(false);
@@ -16,7 +18,7 @@ function InvestmentsComponent(props) {
     return (
         <section className='investments'>
             <h2 className='investments-header'>
-                Investments: {investmentsTotal}
+                Investments: ${ addCommas(investmentsTotal) }
 
                 <span onClick={handleExpandContent}>
                     {

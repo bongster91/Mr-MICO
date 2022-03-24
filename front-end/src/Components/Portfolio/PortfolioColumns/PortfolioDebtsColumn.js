@@ -10,13 +10,13 @@ function PortfolioDebtsColumn({ totalDebtAmount, user_id }) {
             <h2>Debts</h2>
           </Link>
 
-          <h3>Debts Balance: ${ totalDebtAmount.debtTotal }</h3>
+          <h3>Debts Balance: ${ addCommas(totalDebtAmount.debtTotal) }</h3>
         
         <ul className='portfolio-debt-amount-list'>
-            {<li> Bills: ${ totalDebtAmount.billsTotal } </li>}
-            {<li> Credits: ${ totalDebtAmount.creditsTotal } </li>}
-            {<li> Debt: ${ totalDebtAmount.debtTotal } </li>}
-            {<li> Loans: ${ totalDebtAmount.loansTotal } </li>}
+            {<li> Bills: ${ addCommas(totalDebtAmount.billsTotal) } </li>}
+            {<li> Credits: ${ addCommas(totalDebtAmount.creditsTotal) } </li>}
+            {<li> Debt: ${ addCommas(totalDebtAmount.debtTotal) } </li>}
+            {<li> Loans: ${ addCommas(totalDebtAmount.loansTotal) } </li>}
         </ul>
     </section>
   );

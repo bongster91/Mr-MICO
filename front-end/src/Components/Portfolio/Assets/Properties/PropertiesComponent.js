@@ -5,6 +5,8 @@ import ExpandLessRoundedIcon from '@mui/icons-material/ExpandLessRounded';
 import Collapse from '@mui/material/Collapse';
 import Fade from '@mui/material/Fade';
 
+import { addCommas } from '../../../../Helper/AddCommasToNumbers';
+
 function PropertiesComponent(props) {
   const { properties, propertiesTotal } = props;
   const [ expandContent, setExpandContent ] = useState(false);
@@ -16,7 +18,7 @@ function PropertiesComponent(props) {
   return (
       <section className='properties'>
           <h2 className='properties-header'>
-              Properties: {propertiesTotal}
+              Properties: ${ addCommas(propertiesTotal) }
 
               <span onClick={handleExpandContent}>
                   {

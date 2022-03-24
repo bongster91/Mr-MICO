@@ -1,5 +1,5 @@
 const addCommas = (num) => {
-    //num = num.toString();
+    if (!num) return 0;
     let strArr = [];
     let count = 1;
 
