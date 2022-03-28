@@ -1,6 +1,6 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 
+import Link from '@mui/material/Link';
 import Box from '@mui/material/Box';
 import Menu from '@mui/material/Menu';
 import MenuIcon from '@mui/icons-material/Menu';
@@ -66,7 +66,7 @@ function NavBarMenu({ handleCloseNavMenu, handleOpenNavMenu, anchorElNav }) {
                         onClick={handleCloseNavMenu}
                         sx={{ my: 2, color: 'white', display: 'block' }}    
                     >
-                        <Link to={`${page[1]}`} >
+                        <Link href={`${page[1]}`} >
                             { page[0] }
                         </Link>
 

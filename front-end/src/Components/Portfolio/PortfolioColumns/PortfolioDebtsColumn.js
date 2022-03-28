@@ -1,12 +1,12 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import Link from '@mui/material/Link';
 import { addCommas } from '../../../Helper/AddCommasToNumbers';
 
 function PortfolioDebtsColumn({ totalDebtAmount, user_id }) {
   
   return (
     <section className='portfolio-container__portfolio-columns__debts-column'>
-          <Link className='debts-link' to={`/users/${user_id}/debts`}>
+          <Link className='debts-link' href={`/users/${user_id}/debts`}>
             <h2>Debts</h2>
           </Link>
 

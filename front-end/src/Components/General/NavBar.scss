@@ -25,10 +25,6 @@
         height: 100%;
         font-size:inherit;
         
-        //    :hover {
-            //        background-color: green;
-            //    }
-            
         &__link {
             cursor: pointer;
             display: block;
@@ -47,7 +43,12 @@
                 cursor: pointer;
                 display: block;
                 padding: 5px;
+
+                :visited {
+                    color: black;
+                };
             };
+
         };
     };
 };

@@ -1,6 +1,6 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 
+import Link from '@mui/material/Link';
 import Box from '@mui/material/Box';
 import Tooltip from '@mui/material/Tooltip';
 import IconButton from '@mui/material/IconButton';
@@ -27,12 +27,12 @@ function NavBarSettings({ handleOpenUserMenu, handleCloseUserMenu, anchorElUser 
                     <Avatar alt="kitty" src="http://placekitten.com/75/75" />
 
                 </IconButton> */}
-                <MenuIcon onClick={handleOpenUserMenu} sx={{p:0 }} />
+                <MenuIcon onClick={handleOpenUserMenu} sx={{ p:0 }} />
             </Tooltip>
 
             <Menu
                 sx={{ mt: '45px' }}
-                className='navbar-appbar'
+                className='navbar__list_settings__appbar'
                 anchorEl={anchorElUser}
                 anchorOrigin={{
                     vertical: 'top',
@@ -48,11 +48,14 @@ function NavBarSettings({ handleOpenUserMenu, handleCloseUserMenu, anchorElUser 
             >
                 {
                     settings.map((setting) => (
-                        <MenuItem key={setting} onClick={handleCloseUserMenu} className='navbar__list__settings_link'>
+                        <MenuItem 
+                            key={setting} 
+                            onClick={handleCloseUserMenu} className='navbar__list__settings_link'
+                        >
 
                             <Typography textAlign="center">
 
-                                <Link to={`${setting[1]}`}>
+                                <Link href={`${setting[1]}`}>
                                     { setting[0] }
                                 </Link>
 

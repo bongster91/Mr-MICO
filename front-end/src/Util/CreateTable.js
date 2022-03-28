@@ -5,6 +5,7 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import MoreVertRoundedIcon from '@mui/icons-material/MoreVertRounded';
+import Typography from '@mui/material/Typography';
 
 import { addCommas } from '../Helper/AddCommasToNumbers';
 
@@ -18,15 +19,17 @@ const CreateTable = ({ props }) => {
     };
 
     return (
-        <TableContainer>
+        <TableContainer className='table'>
             <Table label='table'>
                 <TableHead>
-                    <TableRow>
+                    <TableRow className='table__column'>
                         {
                             columnNames.map((category, i) => {
                                 return (
-                                    <TableCell key={i} align='left' className='table-header'>
-                                        {category} 
+                                    <TableCell key={i} align='left' className='table__column__header'>
+                                        <Typography variant='h6'>
+                                            { category } 
+                                        </Typography>
                                     </TableCell>
                                 );
                             })
@@ -39,7 +42,11 @@ const CreateTable = ({ props }) => {
                             props.map((el, i) => {
                                 let currentData
                                 return (
-                                    <TableRow key={i} sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
+                                    <TableRow
+                                        className='table__row'
+                                        key={i} 
+                                        sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+                                    >
 
                                         {
                                             columnNames.map((key, index) => {
@@ -48,7 +55,13 @@ const CreateTable = ({ props }) => {
                                                 
                                                 if (key2 === 'amount') {
                                                     return (
-                                                        <TableCell component='th' scope='row' align='left' key={index} className='table-row'>
+                                                        <TableCell 
+                                                            component='th' 
+                                                            scope='row' 
+                                                            align='left' 
+                                                            key={index} 
+                                                            className='table__row__content'
+                                                        >
                                                              ${ addCommas(currentData) }
                                                         </TableCell>
                                                     );
