@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import CreateTable from '../../../../Util/CreateTable';
+import CreateTable from '../../../../Util/Table/CreateTable';
 import ExpandMoreRoundedIcon from '@mui/icons-material/ExpandMoreRounded';
 import ExpandLessRoundedIcon from '@mui/icons-material/ExpandLessRounded';
 import Collapse from '@mui/material/Collapse';
@@ -38,7 +38,13 @@ function BankAccountsComponent(props) {
                     timeout='auto'
                     unmountOnExit
                     >
-                    <CreateTable props={bankAccounts} />
+
+                    <CreateTable 
+                        accounts={bankAccounts} 
+                        category='assets'
+                        type='bank_accounts' 
+                    />
+                    
                 </Collapse>
             </Fade>
         </section>
