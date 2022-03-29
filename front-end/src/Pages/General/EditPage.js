@@ -1,10 +1,10 @@
 import React from 'react';
-import EditForm from '../../Components/Portfolio/EditForm';
+import DataForEditForm from '../../Components/Portfolio/EditForm/DataForEditForm';
 
 function EditPage() {
     return (
         <div>
-            <EditForm />
+            <DataForEditForm />
         </div>
     );
 };

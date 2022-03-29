@@ -17,7 +17,7 @@ function DeleteAccount({ account }) {
         await axios
             .delete(`${API}/users/${user_id}/portfolio/${category}/${type}/${id}`)
             .then(
-                navigate(`/users/${user_id}/${category}`)
+                navigate(`/users/${user_id}/portfolio/${category}`)
             )
             .catch((c) => console.error(c, `couldn't delete ${account.accountInfo} from ${category}/${type} for user: ${user_id}`));
 

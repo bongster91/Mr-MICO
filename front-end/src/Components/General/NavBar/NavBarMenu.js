@@ -19,8 +19,7 @@ function NavBarMenu({ handleCloseNavMenu, handleOpenNavMenu, anchorElNav }) {
   return (
     <section className='navbar__list__link'>
 
-    <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
-        {/* s */}
+    <Box sx={{ flexGrow: 1, display: { xs: 'flex' } }}>
 
         <Menu
             className='navbar-appbar'
@@ -57,7 +56,7 @@ function NavBarMenu({ handleCloseNavMenu, handleOpenNavMenu, anchorElNav }) {
         </Menu>
     </Box>
 
-    <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }} >
+    <Box sx={{ flexGrow: 1, display: {  md: 'flex' } }} >
         {
             pages.map((page) => {
                 return (

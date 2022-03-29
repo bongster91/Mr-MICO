@@ -19,7 +19,7 @@ function NavBarSettings({ handleOpenUserMenu, handleCloseUserMenu, anchorElUser 
     ];
 
     return (
-        <Box sx={{ flexGrow: 0 }} className='navbar__list__settings'>
+        <Box className='navbar__list__settings'>
 
             <Tooltip title="Open settings">
                 {/* <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
@@ -45,7 +45,7 @@ function NavBarSettings({ handleOpenUserMenu, handleCloseUserMenu, anchorElUser 
                 }}
                 open={Boolean(anchorElUser)}
                 onClose={handleCloseUserMenu}
-            >
+            > 
                 {
                     settings.map((setting) => (
                         <MenuItem 

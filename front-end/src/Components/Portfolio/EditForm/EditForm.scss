@@ -1,0 +1,16 @@
+.form-container {
+    width: 90%;
+    position: relative;
+    padding: 20px;
+    justify-content: inherit;
+    align-items: center;
+    display: grid;
+
+    &__section {
+        
+
+        &__input {
+            padding: 1em;
+        }
+    }
+};

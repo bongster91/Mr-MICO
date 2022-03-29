@@ -21,11 +21,10 @@ function AllAssetsComponent() {
     const [ inputText, setInputText ] = useState('');
 
     useEffect(() => {
-        axios
-            .get(`${API}/users/1/portfolio/assets`)
-            .then((response) => {
-                setAllAssets(response.data.allAssets.assets)
-                setAssetBalances(response.data.allAssets.assetBalances)
+        axios.get(`${API}/users/1/portfolio/assets`)
+            .then(async (response) => {
+                await setAllAssets(response.data.allAssets.assets)
+                await setAssetBalances(response.data.allAssets.assetBalances)
             })
             .catch(error => console.warn(error));
     }, [ allAssets ]);
@@ -50,7 +49,7 @@ function AllAssetsComponent() {
                 label='Search'
             />
         </div>
-   
+        
         <BankAccountsComponent 
             bankAccounts={allAssets.bankAccounts}
             bankAccountsTotal={assetBalances.bankAccountsTotal}

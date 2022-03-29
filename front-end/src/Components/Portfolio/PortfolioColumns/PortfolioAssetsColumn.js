@@ -6,7 +6,7 @@ function PortfolioAssetsColumn({ totalAssetAmount, user_id }) {
 
   return (
     <section className='portfolio-container__portfolio-columns__assets-column'>
-          <Link className='assets-link' href={`/users/${user_id}/assets`}>
+          <Link className='assets-link' href={`/users/${user_id}/portfolio/assets`}>
             <h2>Assets</h2>
           </Link>
 
