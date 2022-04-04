@@ -18,7 +18,7 @@ function NavBarMenu({ handleCloseNavMenu, handleOpenNavMenu, anchorElNav }) {
 
   return (
     <section className='navbar__list__link'>
-
+{/* 
     <Box sx={{ flexGrow: 1, display: { xs: 'flex' } }}>
 
         <Menu
@@ -54,7 +54,7 @@ function NavBarMenu({ handleCloseNavMenu, handleOpenNavMenu, anchorElNav }) {
                     })
                 }
         </Menu>
-    </Box>
+    </Box> */}
 
     <Box sx={{ flexGrow: 1, display: {  md: 'flex' } }} >
         {
@@ -65,9 +65,11 @@ function NavBarMenu({ handleCloseNavMenu, handleOpenNavMenu, anchorElNav }) {
                         onClick={handleCloseNavMenu}
                         sx={{ my: 2, color: 'white', display: 'block' }}    
                     >
-                        <Link href={`${page[1]}`} >
-                            { page[0] }
-                        </Link>
+                        {
+                            <Link href={`${page[1]}`} >
+                                { page[0] }
+                            </Link>
+                        }
 
                     </Button>
                 );

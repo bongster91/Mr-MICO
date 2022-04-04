@@ -1,25 +1,57 @@
 import React from 'react';
-import Link from '@mui/material/Link';
 import { addCommas } from '../../../Helper/AddCommasToNumbers';
+
+import Link from '@mui/material/Link';
+import Box from '@mui/material/Box';
+import List from '@mui/material/List';
+import ListItem from '@mui/material/ListItem';
+import Typography from '@mui/material/Typography';
 
 function PortfolioDebtsColumn({ totalDebtAmount, user_id }) {
   
-  return (
-    <section className='portfolio-container__portfolio-columns__debts-column'>
-          <Link className='debts-link' href={`/users/${user_id}/portfolio/debts`}>
-            <h2>Debts</h2>
-          </Link>
+    return (
+        <Box className='portfolio-container__portfolio-columns__debts-column'>
+            <Link className='debts-link' href={`/users/${user_id}/portfolio/debts`}>
+                <Typography variant='h5'>Debts</Typography>
+            </Link>
 
-          <h3>Debts Balance: ${ addCommas(totalDebtAmount.debtTotal) }</h3>
+            <Typography variant='body1'>Debts Balance: ${ addCommas(totalDebtAmount.debtTotal) }</Typography>
         
-        <ul className='portfolio-debt-amount-list'>
-            {<li> Bills: ${ addCommas(totalDebtAmount.billsTotal) } </li>}
-            {<li> Credits: ${ addCommas(totalDebtAmount.creditsTotal) } </li>}
-            {<li> Debt: ${ addCommas(totalDebtAmount.debtTotal) } </li>}
-            {<li> Loans: ${ addCommas(totalDebtAmount.loansTotal) } </li>}
-        </ul>
-    </section>
-  );
+            <List className='portfolio-debt-amount-list'>
+                {<ListItem>
+                    <Link href={`/users/${user_id}/portfolio/debts/bills`}>
+                        <Typography variant='body1'>
+                            Bills: ${ addCommas(totalDebtAmount.billsTotal) } 
+                        </Typography>
+                    </Link>
+                </ListItem>}
+
+                {<ListItem>
+                    <Link href={`/users/${user_id}/portfolio/debts/credit`}>
+                        <Typography variant='body1'>
+                            Credits: ${ addCommas(totalDebtAmount.creditsTotal) } 
+                        </Typography>
+                    </Link>
+                </ListItem>}
+
+                {<ListItem>
+                      < Link href={`/users/${user_id}/portfolio/debts/personal_expenses`}>
+                          <Typography variant='body1'>
+                              Personal Expenses: ${ addCommas(totalDebtAmount.debtTotal) } 
+                          </Typography>
+                    </Link>
+                </ListItem>}
+
+                {<ListItem>
+                    <Link href={`/users/${user_id}/portfolio/debts/loans`}>
+                        <Typography variant='body1'>
+                            Loans: ${ addCommas(totalDebtAmount.loansTotal) } 
+                        </Typography>
+                    </Link>
+                </ListItem>}
+            </List>
+        </Box>
+    );
 };
 
 export default PortfolioDebtsColumn;
