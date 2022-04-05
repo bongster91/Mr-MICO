@@ -19,7 +19,7 @@ const CreateTable = (props) => {
     return (
         <TableContainer className='table'>
             <Table label='table'>
-
+                
                 <TableHead>
                     <TableColumns columnNames={columnNames} />
                 </TableHead>

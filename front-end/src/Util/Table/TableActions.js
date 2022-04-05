@@ -1,6 +1,7 @@
 import React from 'react';
-import DeleteAccount from './DeleteAccount';
 import { useNavigate } from 'react-router-dom';
+
+import DeleteAccount from './DeleteAccount';
 
 import IconButton from '@mui/material/IconButton';
 import Box from '@mui/material/Box';
@@ -16,14 +17,14 @@ function TableActions(props) {
     };
 
     return (
-        <Box>
+        <Box display='inline-flex'>
            
             <DeleteAccount account={props} />
 
             <IconButton size='small' color='inherit' aria-label='edit' onClick={ handleRedirect }>
                 <EditIcon />
             </IconButton>
-            
+
         </Box>
     );
 };

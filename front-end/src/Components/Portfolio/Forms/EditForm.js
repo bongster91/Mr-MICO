@@ -42,7 +42,7 @@ function EditForm() {
                 c, 
                 `couldn't get account from ${category}/${category_type} with id: ${id} and user_id: ${user_id}`
             ));
-    }, [])
+    }, [API, user_id, category, category_type, id])
 
     const updateAccount = async (updatedAccount) => {
         await axios
