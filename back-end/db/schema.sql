@@ -17,7 +17,7 @@ CREATE TABLE users (
 DROP TABLE IF EXISTS bank_accounts;
 CREATE TABLE bank_accounts (
     id BIGSERIAL PRIMARY KEY,
-    bank VARCHAR(50),
+    name VARCHAR(50),
     type TEXT,
     amount NUMERIC(1000, 2),
     user_id INTEGER REFERENCES users(user_id) ON DELETE CASCADE

@@ -27,7 +27,7 @@ function AllAssetsComponent() {
                 await setAssetBalances(response.data.allAssets.assetBalances)
             })
             .catch(error => console.warn(error));
-    }, [ allAssets ]);
+    }, []);
 
     const handleInputText = (e) => {
         const char = e.target.value.toLowerCase();

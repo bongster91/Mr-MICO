@@ -45,12 +45,12 @@ const newProperty = async (user_id, property) => {
         const newProperty = await db.one(
             `
                 INSERT INTO properties
-                (name, type, value, user_id)
+                (name, type, amount, user_id)
                 VALUES
                 ($1, $2, $3, $4)
                 RETURNING *
             `,
-            [ property.name, property.type, property.value, user_id ]
+            [ property.name, property.type, property.amount, user_id ]
         );
 
         return {
@@ -97,12 +97,12 @@ const updateProperty = async (user_id, id, investment) => {
             `
                 UPDATE properties
                 SET 
-                name=$2, type=$2, value=$3
+                name=$2, type=$2, amount=$3
                 WHERE 
                 user_id=$4 AND id=$5
                 RETURNING *
             `,
-            [ investment.name, investment.type, investment.value, user_id, id ]
+            [ investment.name, investment.type, investment.amount, user_id, id ]
         );
 
         return {

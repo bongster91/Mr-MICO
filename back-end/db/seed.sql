@@ -7,7 +7,7 @@ INSERT INTO users (
 );
 
 INSERT INTO bank_accounts (
-    user_id, bank, type, amount
+    user_id, name, type, amount
 ) VALUES
     (1, 'Catnip Collective', 'Checking', 250000.00),
     (1, 'Mice Catchers', 'Checking', 100000.00),

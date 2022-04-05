@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
+
 import CreateTable from '../../../../Util/Table/CreateTable';
+import { addCommas } from '../../../../Helper/AddCommasToNumbers';
+
 import ExpandMoreRoundedIcon from '@mui/icons-material/ExpandMoreRounded';
 import ExpandLessRoundedIcon from '@mui/icons-material/ExpandLessRounded';
 import Collapse from '@mui/material/Collapse';
 import Fade from '@mui/material/Fade';
 
-import { addCommas } from '../../../../Helper/AddCommasToNumbers';
 
 function BankAccountsComponent(props) {
     const { bankAccounts, bankAccountsTotal } = props;

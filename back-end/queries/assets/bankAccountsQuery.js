@@ -45,12 +45,12 @@ const newBankAccount = async (user_id, bankAccount) => {
         const newBankAccount = await db.one(
             `
                 INSERT INTO bank_accounts
-                (bank, type, amount, user_id)
+                (name, type, amount, user_id)
                 VALUES
                 ($1, $2, $3, $4)
                 RETURNING *
             `,
-            [ bankAccount.bank, bankAccount.type, bankAccount.amount, user_id ]
+            [ bankAccount.name, bankAccount.type, bankAccount.amount, user_id ]
         );
 
         return {
@@ -95,11 +95,11 @@ const updateBankAccount = async (user_id, id, bankAccount) => {
         const updatedBankAccount = await db.one(
             `
                 UPDATE bank_accounts
-                SET bank=$1, type=$2, amount=$3
+                SET name=$1, type=$2, amount=$3
                 WHERE user_id=$4 AND id=$5
                 RETURNING *
             `,
-            [ bankAccount.bank, bankAccount.type, bankAccount.amount, user_id, id ]
+            [ bankAccount.name, bankAccount.type, bankAccount.amount, user_id, id ]
         );
 
         return {
