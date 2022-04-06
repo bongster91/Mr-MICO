@@ -55,7 +55,7 @@ const newProperty = async (user_id, property) => {
 
         return {
             success: true,
-            payload: newProperty
+            newProperty: newProperty
         };
 
     } catch (error) {
@@ -80,7 +80,7 @@ const deleteProperty = async (user_id, id) => {
 
         return {
             success: true,
-            payload: deletedProperty
+            deletedProperty: deletedProperty
         };
 
     } catch (error) {
@@ -107,7 +107,7 @@ const updateProperty = async (user_id, id, investment) => {
 
         return {
             success: true,
-            payload: updatedProperty
+            updatedProperty: updatedProperty
         };
 
     } catch (error) {

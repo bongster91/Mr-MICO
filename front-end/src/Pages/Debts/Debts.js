@@ -1,9 +1,8 @@
 import React from 'react';
+import AllDebtsComponent from '../../Components/Portfolio/Debts/AllDebtsComponent';
 
 function Debts() {
-  return <div>
-      Debts page
-  </div>;
-}
+    return <AllDebtsComponent />
+};
 
 export default Debts;

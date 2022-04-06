@@ -68,8 +68,8 @@ CREATE TABLE credit (
     user_id INTEGER REFERENCES users(user_id) ON DELETE CASCADE
 );
 
-DROP TABLE IF EXISTS personal_expenses;
-CREATE TABLE personal_expenses (
+DROP TABLE IF EXISTS expenses;
+CREATE TABLE expenses (
     id BIGSERIAL PRIMARY KEY,
     name VARCHAR(50),
     type TEXT,

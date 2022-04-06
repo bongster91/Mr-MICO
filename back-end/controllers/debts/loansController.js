@@ -17,7 +17,7 @@ loans.get('/', async (req, res) => {
         if (success) {
             res.status(200).json({
                 success,
-                loans
+                loans: loans
             });
 
         } else {
@@ -45,7 +45,7 @@ loans.get('/:id', async (req, res) => {
         if (success && loan.id) {
             res.status(200).json({
                 success,
-                loan
+                loan: loan
             });
 
         } else {
@@ -68,16 +68,16 @@ loans.post('/', async (req, res) => {
     const { user_id } = req.params;
 
     try {
-        const { success, payload } = await newLoan(user_id, req.body);
+        const { success, newLoan } = await newLoan(user_id, req.body);
 
-        if (success && payload.id) {
+        if (success && newLoan.id) {
             res.status(201).json({
                 success,
-                payload
+                newLoan: newLoan
             });
 
         } else {
-            console.error(payload);
+            console.error(newLoan);
             return {
                 success,
                 payload: `Failed to create new loan for user_id: ${user_id} with details: ${req.body}`
@@ -96,16 +96,16 @@ loans.delete('/:id', async (req, res) => {
     const { user_id, id } = req.params;
 
     try {
-        const { success, payload } = await deleteLoan(user_id, id);
+        const { success, deletedLoan } = await deleteLoan(user_id, id);
 
         if (success) {
             res.status(200).json({
                 success,
-                payload
+                deletedLoan: deletedLoan
             });
 
         } else {
-            console.error(payload);
+            console.error(deletedLoan);
             return {
                 success,
                 payload: `Failed to delete loan with id: ${id} for user_id: ${user_id}`
@@ -124,16 +124,16 @@ loans.put('/:id', async (req, res) => {
     const { user_id, id } = req.params;
 
     try {
-        const { success, payload } = await updateLoan(user_id, id, req.body);
+        const { success, updatedLoan } = await updateLoan(user_id, id, req.body);
 
-        if (success && payload.id) {
+        if (success && updatedLoan.id) {
             res.status(200).json({
                 success,
-                payload
+                updatedLoan: updatedLoan
             });
 
         } else {
-            console.error(payload);
+            console.error(updatedLoan);
             return {
                 success,
                 payload: `Failed to update loan with id: ${id} for user_id: ${user_id} with details: ${req.body}`

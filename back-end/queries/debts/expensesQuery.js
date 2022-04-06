@@ -1,9 +1,9 @@
 const db = require('../../db/dbConfig');
 
-const getAllPersonalExpenses = async (user_id) => {
+const getAllExpenses = async (user_id) => {
     try {
         const allExpenses = await db.any(
-            `SELECT * FROM personal_expenses WHERE user_id=user_id`,
+            `SELECT * FROM expenses WHERE user_id=user_id`,
             user_id
         );
 
@@ -20,11 +20,11 @@ const getAllPersonalExpenses = async (user_id) => {
     };
 };
 
-const getOnePersonalExpense = async (user_id, id) => {
+const getOneExpense = async (user_id, id) => {
     try {
         const oneExpense = await db.one(
             `
-                SELECT * FROM personal_expenses
+                SELECT * FROM expenses
                 WHERE
                 user_id=$1 AND id=$2
             `,
@@ -44,11 +44,11 @@ const getOnePersonalExpense = async (user_id, id) => {
     };
 };
 
-const newPersonalExpense = async (user_id, expense) => {
+const newExpense = async (user_id, expense) => {
     try {
         const newExpense = await db.one(
             `
-                INSERT INTO personal_expenses
+                INSERT INTO expenses
                 (name, type, amount, user_id)
                 VALUES
                 ($1, $2, $3, $4)
@@ -59,7 +59,7 @@ const newPersonalExpense = async (user_id, expense) => {
 
         return {
             success: true,
-            payload: newExpense
+            newExpense: newExpense
         };
 
     } catch (error) {
@@ -70,11 +70,11 @@ const newPersonalExpense = async (user_id, expense) => {
     };
 };
 
-const deletePersonalExpense = async (user_id, id) => {
+const deleteExpense = async (user_id, id) => {
     try {
         const deletedExpense = await db.one(
             `
-                DELETE FROM personal_expenses
+                DELETE FROM expenses
                 WHERE
                 user_id=$1 AND id=$2
                 RETURNING *
@@ -84,7 +84,7 @@ const deletePersonalExpense = async (user_id, id) => {
 
         return {
             success: true,
-            payload: deletedExpense
+            deletedExpense: deletedExpense
         };
 
     } catch (error) {
@@ -95,11 +95,11 @@ const deletePersonalExpense = async (user_id, id) => {
     };
 };
 
-const updatePersonalExpense = async (user_id, id, expense) => {
+const updateExpense = async (user_id, id, expense) => {
     try {
         const updatedExpense = await db.one(
             `
-                UPDATE personal_expenses
+                UPDATE expenses
                 SET
                 name=$1, type=$2, amount=$3
                 WHERE
@@ -111,7 +111,7 @@ const updatePersonalExpense = async (user_id, id, expense) => {
 
         return {
             success: true,
-            payload: updatedExpense
+            updatedExpense: updatedExpense
         };
 
     } catch (error) {
@@ -123,9 +123,9 @@ const updatePersonalExpense = async (user_id, id, expense) => {
 };
 
 module.exports = {
-    getAllPersonalExpenses,
-    getOnePersonalExpense,
-    newPersonalExpense,
-    deletePersonalExpense,
-    updatePersonalExpense
+    getAllExpenses,
+    getOneExpense,
+    newExpense,
+    deleteExpense,
+    updateExpense
 };

@@ -17,7 +17,7 @@ credit.get('/', async (req, res) => {
         if (success) {
             res.status(200).json({
                 success,
-                credits
+                credits: credits
             });
 
         } else {
@@ -45,7 +45,7 @@ credit.get('/:id', async (req, res) => {
         if (success && credit.id) {
             res.status(200).json({
                 success, 
-                credit
+                credit: credit
             });
 
         } else {
@@ -68,16 +68,16 @@ credit.post('/', async (req, res) => {
     const { user_id } = req.params;
 
     try {
-        const { success, payload } = await newCredit(user_id, req.body);
+        const { success, newCredit } = await newCredit(user_id, req.body);
 
-        if (success && payload.id) {
+        if (success && newCredit.id) {
             res.status(200).json({
                 success,
-                payload
+                newCredit: newCredit
             });
 
         } else {
-            console.error(payload);
+            console.error(newCredit);
             return {
                 success,
                 payload: `Failed to create credit for user_id: ${user_id} with details: ${req.body}`
@@ -96,16 +96,16 @@ credit.delete('/:id', async (req, res) => {
     const { user_id, id } = req.params;
 
     try {
-        const { success, payload } = await deleteCredit(user_id, id);
+        const { success, deletedCredit } = await deleteCredit(user_id, id);
 
         if (success) {
             res.status(200).json({
                 success,
-                payload
+                deletedCredit: deletedCredit
             });
 
         } else {
-            console.error(payload);
+            console.error(deletedCredit);
             return {
                 success,
                 payload: `Failed to deleted credit with id: ${id} for user_id: ${user_id}`
@@ -124,16 +124,16 @@ credit.put('/:id', async (req, res) => {
     const { user_id, id } = req.params;
 
     try {
-        const { success, payload } = await updateCredit(user_id, id, req.body);
+        const { success, updatedCredit } = await updateCredit(user_id, id, req.body);
 
-        if (success && payload.id) {
+        if (success && updatedCredit.id) {
             res.status(200).json({
                 success,
-                payload
+                updatedCredit: updatedCredit
             });
 
         } else {
-            console.error(payload);
+            console.error(updatedCredit);
             return {
                 success,
                 payload: `Failed to update credit with id: ${id} for user_id: ${user_id} with details: ${req.body}`

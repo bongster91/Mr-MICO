@@ -7,18 +7,21 @@ import { addCommas } from '../../../Helper/AddCommasToNumbers';
 
 // MUI
 import TextField from '@mui/material/TextField';
+import Box from '@mui/material/Box';
+import Stack from '@mui/material/Stack';
+import Typography from '@mui/material/Typography';
 
 // Components
-import BankAccountsComponent from './Bank_Accounts/BankAccountsComponent';
-import InvestmentsComponent from './Investments/InvestmentsComponent';
-import PropertiesComponent from './Properties/PropertiesComponent';
-
-const API = apiURL();
+import BankAccountsColumn from '../PortfolioColumns/AssetsColumn/BankAccountsColumn';
+import InvestmentsColumn from '../PortfolioColumns/AssetsColumn/InvestmentsColumn';
+import PropertiesColumn from '../PortfolioColumns/AssetsColumn/PropertiesColumn';
 
 function AllAssetsComponent() {
     const [ allAssets, setAllAssets ] = useState({});
     const [ assetBalances, setAssetBalances ] = useState({});
     const [ inputText, setInputText ] = useState('');
+    
+    const API = apiURL();
 
     useEffect(() => {
         axios.get(`${API}/users/1/portfolio/assets`)
@@ -27,46 +30,48 @@ function AllAssetsComponent() {
                 await setAssetBalances(response.data.allAssets.assetBalances)
             })
             .catch(error => console.warn(error));
-    }, []);
+    }, [ API ]);
 
     const handleInputText = (e) => {
         const char = e.target.value.toLowerCase();
         setInputText(char);
     };
 
-  return (
-    <div className='allAssets-container'>
-        <div className='D3-Assets-chart'>
-            D3 All Assets chart
-        </div>
-        <h1>Assets Balance: ${addCommas(assetBalances.assetsTotal)}</h1>
+    return (
+        <Stack spacing={3}>
 
-        <div className='search-bar'>
-            <TextField
-                onChange={handleInputText}
-                variant='outlined'
-                fullWidth
-                label='Search'
-            />
-        </div>
+            <Box>
+                D3 All Assets chart
+            </Box>
+
+            <Typography variant='h4'>Assets Balance: ${ addCommas(assetBalances.assetsTotal) }</Typography>
+
+            <Box>
+                <TextField
+                    onChange={handleInputText}
+                    variant='outlined'
+                    fullWidth
+                    label='Search'
+                />
+            </Box>
         
-        <BankAccountsComponent 
-            bankAccounts={allAssets.bankAccounts}
-            bankAccountsTotal={assetBalances.bankAccountsTotal}
-        />
+            <BankAccountsColumn 
+                bankAccounts={allAssets.bankAccounts}
+                bankAccountsTotal={assetBalances.bankAccountsTotal}
+            />
 
-        <InvestmentsComponent 
-            investments={allAssets.investments}
-            investmentsTotal={assetBalances.investmentsTotal}
-        />
+            <InvestmentsColumn 
+                investments={allAssets.investments}
+                investmentsTotal={assetBalances.investmentsTotal}
+            />
 
-        <PropertiesComponent 
-            properties={allAssets.properties}
-            propertiesTotal={assetBalances.propertiesTotal}
-        />
+            <PropertiesColumn 
+                properties={allAssets.properties}
+                propertiesTotal={assetBalances.propertiesTotal}
+            />
 
-    </div>
-  );
+        </Stack>
+    );
 };
 
 export default AllAssetsComponent;

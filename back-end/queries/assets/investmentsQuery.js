@@ -55,7 +55,7 @@ const newInvestment = async (user_id, investment) => {
 
         return {
             success: true,
-            payload: newInvestment
+            newInvestment: newInvestment
         };
 
     } catch (error) {
@@ -79,7 +79,7 @@ const deleteInvestment = async (user_id, id) => {
 
         return {
             success: true,
-            payload: deletedInvestment
+            deletedInvestment: deletedInvestment
         };
 
     } catch (error) {
@@ -104,7 +104,7 @@ const updateInvestment = async (user_id, id, investment) => {
 
         return {
             success: true,
-            payload: updatedInvestment
+            updatedInvestment: updatedInvestment
         };
 
     } catch (error) {

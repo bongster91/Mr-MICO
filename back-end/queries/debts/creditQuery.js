@@ -59,7 +59,7 @@ const newCredit = async (user_id, credit) => {
 
         return {
             success: true,
-            payload: newCredit
+            newCredit: newCredit
         };
 
     } catch (error) {
@@ -84,7 +84,7 @@ const deleteCredit = async (user_id, id) => {
 
         return {
             success: true,
-            payload: deletedCredit
+            deletedCredit: deletedCredit
         };
 
     } catch (error) {
@@ -111,7 +111,7 @@ const updateCredit = async (user_id, id, credit) => {
 
         return {
             success: true,
-            payload: updatedCredit
+            updatedCredit: updatedCredit
         };
 
     } catch (error) {

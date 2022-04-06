@@ -55,7 +55,7 @@ const newBankAccount = async (user_id, bankAccount) => {
 
         return {
             success: true,
-            payload: newBankAccount
+            newBankAccount: newBankAccount
         };
 
     } catch (error) {
@@ -79,7 +79,7 @@ const deleteBankAccount = async (user_id, id) => {
 
         return {
             success: true,
-            payload: deletedBankAccount
+            deletedBankAccount: deletedBankAccount
         };
 
     } catch (error) {
@@ -101,10 +101,10 @@ const updateBankAccount = async (user_id, id, bankAccount) => {
             `,
             [ bankAccount.name, bankAccount.type, bankAccount.amount, user_id, id ]
         );
-
+            
         return {
             success: true,
-            payload: updatedBankAccount
+            updatedBankAccount: updatedBankAccount
         };
 
     } catch (error) {

@@ -18,7 +18,7 @@ investments.get('/', async (req, res) => {
         if (success) {
             res.status(200).json({
                 success,
-                investments
+                investments: investments
             });
 
         } else {
@@ -46,7 +46,7 @@ investments.get('/:id', async (req, res) => {
         if (success && investment.id) {
             res.status(200).json({
                 success,
-                investment
+                investment: investment
             });
 
         } else {
@@ -69,16 +69,16 @@ investments.post('/', async (req, res) => {
     const { user_id } = req.params;
 
     try {
-        const { success, payload } = await newInvestment(user_id, req.body);
+        const { success, newInvestment } = await newInvestment(user_id, req.body);
 
-        if (success && payload.id) {
+        if (success && newInvestment.id) {
             res.status(201).json({
                 success,
-                payload
+                newInvestment: newInvestment
             });
 
         } else {
-            console.error(payload);
+            console.error(newInvestment);
             return {
                 success,
                 payload: `Failed to create new investment for user_id: ${user_id} with details: ${req.body}`
@@ -97,16 +97,16 @@ investments.delete('/:id', async (req, res) => {
     const { user_id, id } = req.params;
 
     try {
-        const { success, payload } = await deleteInvestment(user_id, id);
+        const { success, deletedInvestment } = await deleteInvestment(user_id, id);
 
         if (success) {
             res.status(200).json({
                 success,
-                payload
+                deletedInvestment: deletedInvestment
             });
 
         } else {
-            console.error(payload);
+            console.error(deletedInvestment);
             return {
                 success,
                 payload: `Failed to delete investment with id: ${id} for user_id: ${user_id}`
@@ -125,16 +125,16 @@ investments.put('/:id', async (req, res) => {
     const { user_id, id } = req.params;
 
     try {
-        const { success, payload } = await updateInvestment(user_id, id, req.body);
+        const { success, updatedInvestment } = await updateInvestment(user_id, id, req.body);
 
-        if (success && payload.id) {
+        if (success && updatedInvestment.id) {
             res.status(201).json({
                 success,
-                payload
+                updatedInvestment: updatedInvestment
             });
 
         } else {
-            console.error(payload);
+            console.error(updatedInvestment);
             return {
                 success,
                 payload: `Failed to update investment with id: ${id} for user_id: ${user_id}`

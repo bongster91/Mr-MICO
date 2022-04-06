@@ -1,5 +1,5 @@
 import React from 'react';
-import { addCommas } from '../../../Helper/AddCommasToNumbers';
+import { addCommas } from '../../../../Helper/AddCommasToNumbers';
 
 import Link from '@mui/material/Link';
 import Box from '@mui/material/Box';
@@ -11,6 +11,7 @@ function PortfolioDebtsColumn({ totalDebtAmount, user_id }) {
   
     return (
         <Box className='portfolio-container__portfolio-columns__debts-column'>
+
             <Link className='debts-link' href={`/users/${user_id}/portfolio/debts`}>
                 <Typography variant='h5'>Debts</Typography>
             </Link>
@@ -35,9 +36,9 @@ function PortfolioDebtsColumn({ totalDebtAmount, user_id }) {
                 </ListItem>}
 
                 {<ListItem>
-                      < Link href={`/users/${user_id}/portfolio/debts/personal_expenses`}>
+                      < Link href={`/users/${user_id}/portfolio/debts/expenses`}>
                           <Typography variant='body1'>
-                              Personal Expenses: ${ addCommas(totalDebtAmount.debtTotal) } 
+                              Expenses: ${ addCommas(totalDebtAmount.debtTotal) } 
                           </Typography>
                     </Link>
                 </ListItem>}
@@ -50,6 +51,7 @@ function PortfolioDebtsColumn({ totalDebtAmount, user_id }) {
                     </Link>
                 </ListItem>}
             </List>
+
         </Box>
     );
 };

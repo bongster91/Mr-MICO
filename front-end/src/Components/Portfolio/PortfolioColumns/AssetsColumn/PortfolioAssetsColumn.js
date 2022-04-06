@@ -1,5 +1,5 @@
 import React from 'react';
-import { addCommas } from '../../../Helper/AddCommasToNumbers';
+import { addCommas } from '../../../../Helper/AddCommasToNumbers';
 
 import Link from '@mui/material/Link';
 import Box from '@mui/material/Box';

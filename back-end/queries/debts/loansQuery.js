@@ -59,7 +59,7 @@ const newLoan = async (user_id, loan) => {
 
         return {
             success: true,
-            payload: newLoan
+            newLoan: newLoan
         };
 
     } catch (error) {
@@ -84,7 +84,7 @@ const deleteLoan = async (user_id, id) => {
 
         return {
             success: true,
-            payload: deletedLoan
+            deletedLoan: deletedLoan
         };
 
     } catch (error) {
@@ -111,7 +111,7 @@ const updateLoan = async (user_id, id, loan) => {
 
         return {
             success: true,
-            payload: updatedLoan
+            updatedLoan: updatedLoan
         };
 
     } catch (error) {

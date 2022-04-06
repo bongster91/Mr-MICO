@@ -17,7 +17,7 @@ bills.get('/', async (req, res) => {
         if (success) {
             res.status(200).json({
                 success,
-                bills
+                bills: bills
             });
 
         } else {
@@ -45,7 +45,7 @@ bills.get('/:id', async (req, res) => {
         if (success && bill.id) {
             res.status(200).json({
                 success,
-                bill
+                bill: bill
             });
 
         } else {
@@ -68,12 +68,12 @@ bills.post('/', async (req, res) => {
     const { user_id } = req.params;
 
     try {
-        const { success, payload } = await newBill(user_id, req.body);
+        const { success, newBill } = await newBill(user_id, req.body);
 
-        if (success && payload.id) {
+        if (success && newBill.id) {
             res.status(201).json({
                 success,
-                payload
+                newBill: newBill
             });
 
         } else {
@@ -96,12 +96,12 @@ bills.delete('/:id', async (req, res) => {
     const { user_id, id } = req.params;
 
     try {
-        const { success, payload } = await deleteBill(user_id, id);
+        const { success, deletedBill } = await deleteBill(user_id, id);
 
         if (success) {
             res.status(200).json({
                 success,
-                payload
+                deletedBill: deletedBill
             });
 
         } else {
@@ -124,12 +124,12 @@ bills.put('/:id', async (req, res) => {
     const { user_id, id } = req.params;
 
     try {
-        const { success, payload } = await updateBill(user_id, id, req.body);
+        const { success, updatedBill } = await updateBill(user_id, id, req.body);
 
-        if (success && payload.id) {
+        if (success && updatedBill.id) {
             res.status(201).json({
                 success,
-                payload
+                updatedBill: updatedBill
             });
 
         } else {

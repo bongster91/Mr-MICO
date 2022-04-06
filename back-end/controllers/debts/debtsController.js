@@ -1,11 +1,13 @@
 const express = require('express');
 const debts = express.Router({ mergeParams: true });
 
+const { getTotalDebts } = require('../../helper/portfolioCalculations');
+
 // Controllers
 const billsController = require('./billsController');
 const loansController = require('./loansController');
 const creditController = require('./creditController');
-const personalExpensesController = require('./personalExpensesController');
+const expensesController = require('./expensesController');
 
 // Queries
 const {
@@ -20,9 +22,14 @@ debts.get('/', async (req, res) => {
         const { success, debts} = await getAllDebts(user_id);
 
         if (success) {
+            let totalDebtAmount = getTotalDebts(debts);
+
             res.status(200).json({
-                success: true,
-                allDebts: debts
+                success,
+                allDebts: {
+                    debts: debts,
+                    debtsBalances: totalDebtAmount
+                }
             });
 
         } else {
@@ -44,6 +51,6 @@ debts.get('/', async (req, res) => {
 debts.use('/bills', billsController);
 debts.use('/loans', loansController);
 debts.use('/credit', creditController);
-debts.use('/personal_expenses', personalExpensesController);
+debts.use('/expenses', expensesController);
 
 module.exports = debts;

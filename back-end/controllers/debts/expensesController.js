@@ -1,23 +1,23 @@
 const express = require('express');
-const personalExpenses = express.Router({ mergeParams: true });
+const expenses = express.Router({ mergeParams: true });
 const {
-    getAllPersonalExpenses,
-    getOnePersonalExpense,
-    newPersonalExpense,
-    deletePersonalExpense,
-    updatePersonalExpense
-} = require('../../queries/debts/personalExpensesQuery');
+    getAllExpenses,
+    getOneExpense,
+    newExpense,
+    deleteExpense,
+    updateExpense
+} = require('../../queries/debts/ExpensesQuery');
 
-personalExpenses.get('/', async (req, res) => {
+expenses.get('/', async (req, res) => {
     const { user_id } = req.params;
 
     try {
-        const { success, expenses } = await getAllPersonalExpenses(user_id);
+        const { success, expenses } = await getAllExpenses(user_id);
 
         if (success) {
             res.status(200).json({
                 success,
-                expenses
+                expenses: expenses
             });
 
         } else {
@@ -36,16 +36,16 @@ personalExpenses.get('/', async (req, res) => {
     };
 });
 
-personalExpenses.get('/:id', async (req, res) => {
+expenses.get('/:id', async (req, res) => {
     const { user_id, id } = req.params;
 
     try {
-        const { success, expense } = await getOnePersonalExpense(user_id, id);
+        const { success, expense } = await getOneExpense(user_id, id);
 
         if (success && expense.id) {
             res.status(200).json({
                 success,
-                expense
+                expense: expense
             });
 
         } else {
@@ -64,20 +64,20 @@ personalExpenses.get('/:id', async (req, res) => {
     };
 });
 
-personalExpenses.post('/', async (req, res) => {
+expenses.post('/', async (req, res) => {
     const { user_id } = req.params;
 
     try {
-        const { success, payload } = await newPersonalExpense(user_id, req.body);
+        const { success, newExpense } = await newExpense(user_id, req.body);
 
-        if (success && payload.id) {
+        if (success && newExpense.id) {
             res.status(200).json({
                 success,
-                payload
+                newExpense: newExpense
             });
 
         } else {
-            console.error(payload);
+            console.error(newExpense);
             return {
                 success,
                 payload: `Failed to create new personal expense for user_id: ${user_id} with details: ${req.body}`
@@ -92,20 +92,20 @@ personalExpenses.post('/', async (req, res) => {
     };
 });
 
-personalExpenses.delete('/:id', async (req, res) => {
+expenses.delete('/:id', async (req, res) => {
     const { user_id, id } = req.params;
 
     try {
-        const { success, payload } = await deletePersonalExpense(user_id, id);
+        const { success, deletedExpense } = await deleteExpense(user_id, id);
 
         if (success) {
             res.status(200).json({
                 success,
-                payload
+                deletedExpense: deletedExpense
             });
 
         } else {
-            console.error(payload);
+            console.error(deletedExpense);
             return {
                 success,
                 payload: `Failed to delete personal expense with id: ${id} for user_id: ${user_id}`
@@ -120,20 +120,20 @@ personalExpenses.delete('/:id', async (req, res) => {
     };
 });
 
-personalExpenses.put('/:id', async (req, res) => {
+expenses.put('/:id', async (req, res) => {
     const { user_id, id } = req.params;
 
     try {
-        const { success, payload } = await updatePersonalExpense(user_id, id, req.body);
+        const { success, updatedExpense } = await updateExpense(user_id, id, req.body);
 
-        if (success && payload.id) {
+        if (success && updatedExpense.id) {
             res.status(200).json({
                 success,
-                payload
+                updatedExpense: updatedExpense
             });
 
         } else {
-            console.error(payload);
+            console.error(updatedExpense);
             return {
                 success,
                 payload: `Failed to update personal expense with id: ${id} for user_id: ${user_id} with details: ${req.body}`
@@ -148,4 +148,4 @@ personalExpenses.put('/:id', async (req, res) => {
     };
 });
 
-module.exports = personalExpenses;
+module.exports = expenses;

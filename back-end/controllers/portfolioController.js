@@ -25,7 +25,7 @@ portfolio.get('/', async (req, res) => {
         if (allAssets.success && allDebts.success) {
             let totalAssetAmount = getTotalAssets(allAssets.assets);
             let totalDebtAmount = getTotalDebts(allDebts.debts);
-        
+           
             res.status(200).json({
                 success: true,
                 portfolio: {

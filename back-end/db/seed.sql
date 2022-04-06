@@ -66,7 +66,7 @@ INSERT INTO credit (
     (1, 'Select', 'Mastercard', 17000.00)
 ;
 
-INSERT INTO personal_expenses (
+INSERT INTO expenses (
     user_id, name, type, amount
 ) VALUES
     (1, 'Relaxing Sauna', 'spa day', 500.00),

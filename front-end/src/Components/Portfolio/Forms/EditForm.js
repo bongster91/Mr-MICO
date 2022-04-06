@@ -42,7 +42,7 @@ function EditForm() {
                 c, 
                 `couldn't get account from ${category}/${category_type} with id: ${id} and user_id: ${user_id}`
             ));
-    }, [API, user_id, category, category_type, id])
+    }, [ API, user_id, category, category_type, id ])
 
     const updateAccount = async (updatedAccount) => {
         await axios
@@ -53,7 +53,7 @@ function EditForm() {
                         setIsSuccessful(true);
                         setShowAlert(true);
                         setAccount(response.data);
-
+                    
                     } else {
                         setIsSuccessful(false);
                         setShowAlert(true);
@@ -66,7 +66,7 @@ function EditForm() {
                     setIsSuccessful(false);
                 }, 8000)
             )
-            .catch(c => console.error(c, `Didn't update ${account} for ${category_type}, user: ${user_id}`))
+            .catch(c => console.error(c, `Didn't update ${account.name} for ${category_type}, user: ${user_id}`))
     };
 
     const handleSubmit = async (e) => {

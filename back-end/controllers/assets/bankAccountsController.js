@@ -18,7 +18,7 @@ bank_accounts.get('/', async (req, res) => {
         if (success) {
             res.status(200).json({
                 success,
-                bankAccounts
+                bankAccounts: bankAccounts
             });
             
         } else {
@@ -45,7 +45,7 @@ bank_accounts.get('/:id', async (req, res) => {
         if (success && bankAccount.id) {
             res.status(200).json({
                 success,
-                bankAccount
+                bankAccount: bankAccount
             });
             
         } else {
@@ -68,16 +68,16 @@ bank_accounts.post('/', async (req, res) => {
     const { user_id } = req.params;
 
     try {
-        const { success, payload } = await newBankAccount(user_id, req.body);
+        const { success, newBankAccount } = await newBankAccount(user_id, req.body);
 
-        if (success && payload.id) {
+        if (success && newBankAccount.id) {
             res.status(201).json({
                 success,
-                payload
+                newBankAccount: newBankAccount
             });
 
         } else {
-            console.error(payload);
+            console.error(newBankAccount);
             return {
                 success,
                 payload: `Failed to create new bank account for user_id: ${user_id} with details: ${req.body}`
@@ -96,16 +96,16 @@ bank_accounts.put('/:id', async (req, res) => {
     const { user_id, id } = req.params;
 
     try {
-        const { success, payload } = await updateBankAccount(user_id, id, req.body);
+        const { success, updatedBankAccount } = await updateBankAccount(user_id, id, req.body);
 
-        if (success && payload.id) {
+        if (success && updatedBankAccount.id) {
             res.status(201).json({
                 success,
-                payload
+                updatedBankAccount: updatedBankAccount
             });
 
         } else {
-            console.error(payload);
+            console.error(updatedBankAccount);
             return {
                 success,
                 payload: `Failed to update bank account with id: ${id} for user_id: ${user_id}`
@@ -124,16 +124,16 @@ bank_accounts.delete('/:id', async (req, res) => {
     const { user_id, id } = req.params;
 
     try {
-        const { success, payload } = await deleteBankAccount(user_id, id);
+        const { success, deletedBankAccount } = await deleteBankAccount(user_id, id);
 
         if (success) {
             res.status(200).json({
                 success,
-                payload
+                deletedBankAccount: deletedBankAccount
             });
 
         } else {
-            console.error(payload);
+            console.error(deletedBankAccount);
             return {
                 success,
                 payload: `Failed to delete bank account with id: ${id} for user_id: ${user_id}`

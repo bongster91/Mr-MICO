@@ -17,7 +17,7 @@ properties.get('/', async (req, res) => {
         if (success) {
             res.status(200).json({
                 success,
-                properties
+                properties: properties
             });
 
         } else {
@@ -45,7 +45,7 @@ properties.get('/:id', async (req, res) => {
         if (success && property.id) {
             res.status(200).json({
                 success,
-                property
+                property: property
             });
 
         } else {
@@ -68,16 +68,16 @@ properties.post('/', async (req, res) => {
     const { user_id } = req.params;
 
     try {
-        const { success, payload } = await newProperty(user_id, req.body);
+        const { success, newProperty } = await newProperty(user_id, req.body);
 
-        if (success && payload.id) {
+        if (success && newProperty.id) {
             res.status(201).json({
                 success,
-                payload
+                newProperty: newProperty
             });
 
         } else {
-            console.error(payload);
+            console.error(newProperty);
             return {
                 success,
                 payload: `Failed to create new property for user_id: ${user_id} with details: ${req.body}`
@@ -96,16 +96,16 @@ properties.delete('/:id', async (req, res) => {
     const { user_id, id } = req.params;
 
     try {
-        const { success, payload } = await deleteProperty(user_id, id);
+        const { success, deletedProperty } = await deleteProperty(user_id, id);
 
         if (success) {
             res.status(200).json({
                 success,
-                payload
+                deletedProperty: deletedProperty
             });
 
         } else {
-            console.error(payload);
+            console.error(deletedProperty);
             return {
                 success,
                 payload: `Failed to delete property with id: ${id} for user_id: ${user_id}`
@@ -124,16 +124,16 @@ properties.put('/:id', async (req, res) => {
     const { user_id, id } = req.params;
 
     try {
-        const { success, payload } = await updateProperty(user_id, id, req.body);
+        const { success, updatedProperty } = await updateProperty(user_id, id, req.body);
 
-        if (success && payload.id) {
+        if (success && updatedProperty.id) {
             res.status(200).json({
                 success,
-                payload
+                updatedProperty: updatedProperty
             });
 
         } else {
-            console.error(payload);
+            console.error(updatedProperty);
             return {
                 success,
                 payload: `Failed to update property with id: ${id} for user_id: ${user_id}`

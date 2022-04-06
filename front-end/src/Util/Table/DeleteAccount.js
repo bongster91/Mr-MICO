@@ -39,7 +39,7 @@ function DeleteAccount({ account }) {
     };
 
     const handleClick = async (event) => {
-        setOpenModal(true);
+        setOpenModal(!openModal);
     };
 
     return (

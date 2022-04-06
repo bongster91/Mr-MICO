@@ -18,7 +18,7 @@ const getAllDebts = async (user_id) => {
         );
 
         const expenses = await db.any(
-            `SELECT * FROM personal_expenses WHERE user_id=user_id`,
+            `SELECT * FROM expenses WHERE user_id=user_id`,
             user_id
         );
 

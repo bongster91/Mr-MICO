@@ -55,7 +55,7 @@ const newBill = async (user_id, bill) => {
 
         return {
             success: true,
-            payload: newBill
+            newBill: newBill
         };
 
     } catch (error) {
@@ -80,7 +80,7 @@ const deleteBill = async (user_id, id) => {
 
         return {
             success: true,
-            payload: deletedBill
+            deletedBill: deletedBill
         };
 
     } catch (error) {
@@ -107,7 +107,7 @@ const updateBill = async (user_id, id, bill) => {
 
         return {
             success: true,
-            payload: updatedBill
+            updatedBill: updatedBill
         };
 
     } catch (error) {

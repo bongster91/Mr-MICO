@@ -43,7 +43,7 @@ function App() {
             <Route path='/users/:user_id/portfolio/debts/bills' element={<Bills />} />
             <Route path='/users/:user_id/portfolio/debts/loans' element={<Loans />} />
             <Route path='/users/:user_id/portfolio/debts/credit' element={<Credit />} />
-            <Route path='/users/:user_id/portfolio/debts/personal_expenses' element={<PersonalExpenses />} />
+            <Route path='/users/:user_id/portfolio/debts/expenses' element={<PersonalExpenses />} />
 
           <Route path='*' element={<Four0Four />} />
         </Routes>
